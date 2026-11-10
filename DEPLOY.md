@@ -3,21 +3,30 @@
 ## إعداد قاعدة البيانات
 
 1. افتح مشروع Supabase الخاص بـ HAVEN.
-2. افتح SQL Editor، والصق محتوى supabase-setup.sql وشغّله.
+2. افتح SQL Editor، والصق محتوى `supabase-setup.sql` وشغّله.
 3. من Authentication، أنشئ مستخدمًا لبريد الإدارة بكلمة مرور قوية، ثم أكّد البريد.
-4. أضف UUID لمستخدم الإدارة إلى haven_admins بتشغيل: insert into public.haven_admins (user_id) values ('AUTH_USER_UUID');
-5. ضع Project URL وanon أو publishable key في supabase-config.js. لا تضع service_role أو أي مفتاح سري في ملفات الموقع.
+4. أضف UUID لمستخدم الإدارة إلى `haven_admins` بتشغيل الاستعلام بعد استبدال القيمة:
+
+```sql
+insert into public.haven_admins (user_id)
+values ('AUTH_USER_UUID');
+```
+
+5. من إعدادات المشروع انسخ Project URL و`anon` أو publishable key إلى `supabase-config.js`.
+   لا تضع `service_role` أو أي مفتاح سري في ملفات الموقع.
 6. بعد تسجيل دخول المدير لأول مرة، يُنقل المنيو الافتراضي إلى قاعدة البيانات تلقائيًا إذا كانت فارغة.
 
-المنيو والآراء محفوظان في Supabase. تعديلات المنيو تظهر للزوار مباشرة، والآراء الجديدة لا تظهر إلا بعد موافقة المدير.
+المنيو والآراء محفوظان في Supabase. تعديلات المنيو تظهر للزوار مباشرة، والآراء الجديدة تظهر فور إرسالها.
 
 ## النشر على GitHub Pages
 
-الموقع منشور من الفرع main ومجلد الجذر في المستودع: https://github.com/yosefesam80-pixel/haven-cafe-website
+الموقع منشور من الفرع `main` ومجلد الجذر في المستودع:
+`https://github.com/yosefesam80-pixel/haven-cafe-website`
 
-رابط الموقع العام: https://yosefesam80-pixel.github.io/haven-cafe-website/
+رابط الموقع العام:
+`https://yosefesam80-pixel.github.io/haven-cafe-website/`
 
-أي تحديث لملفات الموقع يُنشر بعد إضافته إلى الفرع main. استخدم رابط الموقع العام نفسه لإنشاء QR Code ثابت للكافيه.
+أي تحديث لملفات الموقع يُنشر بعد إضافته إلى الفرع `main`. استخدم رابط الموقع العام نفسه لإنشاء QR Code ثابت للكافيه.
 
 ## تنبيه أمني
 

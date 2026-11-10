@@ -14,7 +14,7 @@ create table if not exists public.reviews (
   rating smallint not null check (rating between 1 and 5),
   comment text not null check (char_length(comment) between 1 and 1200),
   created_at timestamptz not null default now(),
-  approved boolean not null default false
+  approved boolean not null default true
 );
 
 create table if not exists public.haven_admins (
@@ -68,15 +68,20 @@ create policy "Admins delete menu items"
   on public.menu_items for delete to authenticated
   using ((select public.is_haven_admin()));
 
+alter table public.reviews alter column approved set default true;
+update public.reviews set approved = true where not approved;
+
 drop policy if exists "Public reads approved reviews" on public.reviews;
-create policy "Public reads approved reviews"
+drop policy if exists "Public reads all reviews" on public.reviews;
+create policy "Public reads all reviews"
   on public.reviews for select to anon, authenticated
-  using (approved or (select public.is_haven_admin()));
+  using (true);
 
 drop policy if exists "Visitors submit pending reviews" on public.reviews;
-create policy "Visitors submit pending reviews"
+drop policy if exists "Visitors submit reviews for public display" on public.reviews;
+create policy "Visitors submit reviews for public display"
   on public.reviews for insert to anon, authenticated
-  with check (approved = false);
+  with check (approved = true);
 
 drop policy if exists "Admins update reviews" on public.reviews;
 create policy "Admins update reviews"
