@@ -1,0 +1,890 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#0a0d0b">
+  <meta name="description" content="HAVEN Café & PlayStation — منورين في مكانكم الرايق. استكشفوا المنيو الكامل والأسعار وعيشوا تجربة القهوة والـ PlayStation المميزة.">
+  <title>HAVEN Café & PlayStation — منيو هافن</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&family=DM+Sans:wght@400;500;700;800&family=Playfair+Display:ital,wght@0,600;0,700;1,600&family=Reem+Kufi:wght@500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    :root {
+      --bg-deep: #080b09;
+      --bg-card: #121814;
+      --bg-card-hover: #17211a;
+      --gold: #d4a94f;
+      --gold-light: #f3cf7a;
+      --gold-glow: rgba(212, 169, 79, 0.35);
+      --cream: #f4ecdc;
+      --muted: #9fa89f;
+      --line: rgba(212, 169, 79, 0.15);
+      --border: rgba(255, 255, 255, 0.08);
+      --font-ar: 'Cairo', sans-serif;
+      --font-display: 'DM Sans', sans-serif;
+      --font-calligraphy: 'Reem Kufi', sans-serif;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+    html { scroll-behavior: smooth; scroll-padding-top: 85px; }
+    body { background-color: var(--bg-deep); color: var(--cream); font-family: var(--font-ar); overflow-x: hidden; line-height: 1.6; }
+    a { color: inherit; text-decoration: none; }
+    button, input, select, textarea { font-family: inherit; }
+    .site-header { position: fixed; top: 0; left: 0; right: 0; height: 82px; z-index: 1000; display: flex; align-items: center; justify-content: space-between; padding: 0 5%; background: rgba(8, 11, 9, 0.92); backdrop-filter: blur(12px); border-bottom: 1px solid var(--line); box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5); }
+    .brand-logo { display: flex; align-items: center; gap: 12px; cursor: pointer; }
+    .logo-badge { width: 48px; height: 48px; border-radius: 50%; border: 1.5px solid var(--gold); display: flex; align-items: center; justify-content: center; background: radial-gradient(circle, rgba(212, 169, 79, 0.25) 0%, rgba(10, 13, 11, 0.8) 70%); box-shadow: 0 0 15px var(--gold-glow); color: var(--gold); font-size: 20px; }
+    .logo-badge i { animation: steam 2.5s ease-in-out infinite; }
+    @keyframes steam { 0%, 100% { transform: translateY(0) scale(1); opacity: 0.9; } 50% { transform: translateY(-3px) scale(1.05); opacity: 1; } }
+    .brand-text h1 { font-family: var(--font-display); font-size: 19px; font-weight: 800; letter-spacing: 2px; color: var(--gold-light); line-height: 1.1; }
+    .brand-text span { font-size: 11px; color: var(--muted); letter-spacing: 1px; display: block; }
+    .nav-links { display: flex; align-items: center; gap: 24px; }
+    .nav-links a { font-size: 14px; font-weight: 600; color: #e5dfd2; transition: all 0.3s ease; }
+    .nav-links a:hover { color: var(--gold); }
+    .header-actions { display: flex; align-items: center; gap: 14px; }
+    .btn-icon { width: 40px; height: 40px; border-radius: 50%; border: 1px solid var(--border); background: rgba(255, 255, 255, 0.04); color: var(--cream); display: inline-flex; align-items: center; justify-content: center; cursor: pointer; transition: all 0.3s ease; }
+    .btn-icon:hover { border-color: var(--gold); color: var(--gold); }
+    .btn-primary { background: linear-gradient(135deg, var(--gold) 0%, #b88a35 100%); color: #0d120e; font-weight: 700; font-size: 13px; padding: 9px 18px; border-radius: 25px; border: none; cursor: pointer; display: inline-flex; align-items: center; gap: 8px; box-shadow: 0 4px 15px rgba(212, 169, 79, 0.25); }
+    .hero-section { min-height: 85vh; display: flex; align-items: center; justify-content: center; text-align: center; padding: 130px 6% 70px; background: linear-gradient(180deg, rgba(8, 11, 9, 0.85) 0%, rgba(8, 11, 9, 0.95) 100%); }
+    .hero-content { max-width: 820px; margin: 0 auto; z-index: 2; }
+    .hero-badge { display: inline-flex; align-items: center; gap: 8px; background: rgba(212, 169, 79, 0.1); border: 1px solid var(--line); padding: 6px 16px; border-radius: 30px; color: var(--gold-light); font-size: 13px; font-weight: 600; margin-bottom: 24px; }
+    .hero-title { font-size: clamp(32px, 5vw, 56px); font-weight: 900; color: #ffffff; line-height: 1.25; margin-bottom: 18px; }
+    .hero-title span { background: linear-gradient(135deg, var(--gold-light) 0%, var(--gold) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    .hero-desc { font-size: 17px; color: var(--muted); margin-bottom: 34px; max-width: 650px; margin-inline: auto; }
+    .hero-btns { display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; }
+    .btn-secondary { background: rgba(255, 255, 255, 0.05); border: 1px solid var(--border); color: var(--cream); font-weight: 600; font-size: 14px; padding: 10px 22px; border-radius: 25px; cursor: pointer; display: inline-flex; align-items: center; gap: 8px; }
+    .menu-section { padding: 80px 5% 100px; max-width: 1400px; margin: 0 auto; }
+    .section-header { text-align: center; margin-bottom: 40px; }
+    .section-tag { color: var(--gold); font-size: 13px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 8px; }
+    .section-title { font-size: clamp(26px, 3.5vw, 40px); font-weight: 800; color: #ffffff; margin-bottom: 14px; }
+    .search-filter-box { margin-top: 30px; display: flex; flex-direction: column; align-items: center; gap: 20px; }
+    .search-input-wrapper { position: relative; width: 100%; max-width: 520px; }
+    .search-input-wrapper i.search-icon { position: absolute; right: 18px; top: 50%; transform: translateY(-50%); color: var(--muted); }
+    .search-input-wrapper input { width: 100%; background: var(--bg-card); border: 1px solid var(--border); padding: 13px 48px 13px 40px; border-radius: 30px; color: #fff; font-size: 15px; outline: none; }
+    .clear-search { position: absolute; left: 15px; top: 50%; transform: translateY(-50%); background: none; border: none; color: var(--muted); cursor: pointer; display: none; }
+    .categories-wrapper { position: relative; width: 100%; display: flex; align-items: center; }
+    .cat-scroll-btn { position: absolute; top: 50%; transform: translateY(-50%); width: 36px; height: 36px; border-radius: 50%; background: rgba(18, 24, 20, 0.95); border: 1px solid var(--gold); color: var(--gold); display: flex; align-items: center; justify-content: center; cursor: pointer; z-index: 10; box-shadow: 0 0 12px var(--gold-glow); }
+    .cat-scroll-btn.left { left: 0; animation: pulseArrow 1.8s infinite; }
+    .cat-scroll-btn.right { right: 0; display: none; }
+    @keyframes pulseArrow { 0%, 100% { transform: translateY(-50%) translateX(0); } 50% { transform: translateY(-50%) translateX(-4px); } }
+    .categories-bar { display: flex; gap: 10px; overflow-x: auto; padding: 10px 42px; width: 100%; scrollbar-width: none; scroll-behavior: smooth; }
+    .categories-bar::-webkit-scrollbar { display: none; }
+    .cat-btn { background: var(--bg-card); border: 1px solid var(--border); color: var(--muted); padding: 8px 18px; border-radius: 20px; font-size: 14px; font-weight: 600; cursor: pointer; white-space: nowrap; }
+    .cat-btn:hover, .cat-btn.active { background: var(--gold); color: #0b0f0c; border-color: var(--gold); }
+    .menu-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 22px; margin-top: 35px; }
+    .menu-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 16px; overflow: hidden; display: flex; flex-direction: column; position: relative; }
+    .card-img-wrap { width: 100%; height: 190px; overflow: hidden; position: relative; background: #0d120e; }
+    .card-img-wrap img { width: 100%; height: 100%; object-fit: cover; }
+    .card-category-badge { position: absolute; top: 12px; right: 12px; background: rgba(8, 11, 9, 0.85); border: 1px solid var(--line); color: var(--gold-light); font-size: 11px; font-weight: 700; padding: 4px 10px; border-radius: 20px; }
+    .card-body { padding: 16px 18px 20px; display: flex; flex-direction: column; flex-grow: 1; }
+    .card-title { font-size: 17px; font-weight: 700; color: #fff; margin-bottom: 6px; }
+    .card-footer { display: flex; align-items: center; justify-content: space-between; margin-top: auto; padding-top: 14px; border-top: 1px dashed rgba(255, 255, 255, 0.08); }
+    .card-price { font-family: var(--font-display); font-size: 20px; font-weight: 800; color: var(--gold); }
+    .card-price small { font-family: var(--font-ar); font-size: 12px; color: var(--muted); }
+    .card-badge-status { font-size: 11px; color: #4cd964; display: inline-flex; align-items: center; gap: 5px; }
+    .gaming-section { padding: 80px 5%; max-width: 1200px; margin: 0 auto; }
+    .gaming-card-main { background: linear-gradient(145deg, #111713 0%, #0a0e0b 100%); border: 1px solid rgba(212, 169, 79, 0.3); border-radius: 24px; padding: 50px; display: grid; grid-template-columns: 1.1fr 1fr; gap: 40px; align-items: center; }
+    @media (max-width: 900px) { .gaming-card-main { grid-template-columns: 1fr; padding: 30px 24px; } }
+    .gaming-info h3 { font-size: clamp(24px, 3.5vw, 36px); font-weight: 900; color: #fff; margin-bottom: 16px; }
+    .gaming-info h3 span { color: var(--gold); }
+    .gaming-info p { color: #b5beb7; font-size: 15.5px; line-height: 1.7; margin-bottom: 24px; }
+    .gaming-features { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 28px; }
+    .gf-item { display: flex; align-items: center; gap: 12px; background: rgba(255, 255, 255, 0.03); border: 1px solid var(--border); padding: 12px 16px; border-radius: 12px; }
+    .gf-icon { color: var(--gold); font-size: 20px; }
+    .gf-text strong { display: block; color: #fff; font-size: 14px; }
+    .gf-text small { color: var(--muted); font-size: 11.5px; }
+    .gaming-visual { position: relative; border-radius: 20px; overflow: hidden; border: 1px solid var(--line); height: 380px; }
+    .gaming-visual img { width: 100%; height: 100%; object-fit: cover; }
+    .gaming-overlay-badge { position: absolute; bottom: 20px; right: 20px; left: 20px; background: rgba(10, 14, 11, 0.9); border: 1px solid var(--line); padding: 14px 20px; border-radius: 14px; display: flex; align-items: center; gap: 14px; }
+    .social-hub-section { padding: 70px 5%; max-width: 1200px; margin: 0 auto; }
+    .social-cards-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px; margin-top: 35px; }
+    .social-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 18px; padding: 26px 20px; text-align: center; display: flex; flex-direction: column; align-items: center; }
+    .sc-icon { width: 58px; height: 58px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 24px; margin-bottom: 16px; background: rgba(255, 255, 255, 0.04); border: 1px solid var(--border); }
+    .social-card.fb .sc-icon { color: #1877f2; }
+    .social-card.insta .sc-icon { color: #e1306c; }
+    .social-card.tiktok .sc-icon { color: #fff; }
+    .social-card.wa .sc-icon { color: #25d366; }
+    .social-card.mail .sc-icon { color: var(--gold); }
+    .sc-title { font-size: 17px; font-weight: 800; color: #fff; margin-bottom: 5px; }
+    .sc-handle { font-size: 13px; color: var(--muted); margin-bottom: 18px; }
+    .sc-btn { margin-top: auto; padding: 8px 18px; border-radius: 20px; font-size: 13px; font-weight: 700; border: 1px solid var(--border); background: rgba(255, 255, 255, 0.05); color: #fff; }
+    .quote-showcase { margin: 60px 5%; border-radius: 24px; padding: 70px 6%; text-align: center; border: 1px solid rgba(212, 169, 79, 0.3); background: radial-gradient(circle at center, rgba(212, 169, 79, 0.15) 0%, rgba(13, 18, 14, 0.95) 70%); }
+    .quote-icon { font-size: 32px; color: var(--gold); margin-bottom: 20px; }
+    .quote-text { font-family: var(--font-calligraphy); font-size: clamp(28px, 4.5vw, 48px); font-weight: 700; color: #fff; line-height: 1.5; margin-bottom: 15px; }
+    .quote-sub { font-size: 15px; color: var(--gold-light); letter-spacing: 2px; }
+    .reviews-section { padding: 70px 5%; max-width: 1200px; margin: 0 auto; }
+    .reviews-layout { display: grid; grid-template-columns: 1fr 1.3fr; gap: 36px; margin-top: 35px; }
+    @media (max-width: 900px) { .reviews-layout { grid-template-columns: 1fr; } }
+    .review-form-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 20px; padding: 30px; }
+    .form-group { margin-bottom: 16px; }
+    .form-group label { display: block; font-size: 13px; font-weight: 600; color: var(--cream); margin-bottom: 7px; }
+    .form-control { width: 100%; background: rgba(255, 255, 255, 0.04); border: 1px solid var(--border); border-radius: 10px; padding: 11px 14px; color: #fff; font-size: 14px; outline: none; }
+    .star-rating-select { display: flex; gap: 8px; font-size: 22px; color: #555; cursor: pointer; margin-bottom: 4px; }
+    .star-rating-select i.active { color: #f5a623; }
+    .reviews-list { display: flex; flex-direction: column; gap: 16px; max-height: 520px; overflow-y: auto; }
+    .review-item { background: var(--bg-card); border: 1px solid var(--border); border-radius: 14px; padding: 20px; }
+    .review-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
+    .reviewer-name { font-weight: 700; font-size: 15px; color: #fff; }
+    .review-stars { color: #f5a623; font-size: 13px; }
+    .review-content { font-size: 14px; color: #d1d5db; line-height: 1.5; }
+    .review-date { font-size: 11px; color: var(--muted); margin-top: 8px; display: block; }
+    .location-section { padding: 70px 5%; max-width: 1200px; margin: 0 auto; }
+    .location-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 20px; overflow: hidden; display: grid; grid-template-columns: 1fr 1.2fr; }
+    @media (max-width: 850px) { .location-card { grid-template-columns: 1fr; } }
+    .location-details { padding: 40px; display: flex; flex-direction: column; justify-content: center; }
+    .loc-item { display: flex; gap: 16px; margin-bottom: 24px; align-items: flex-start; }
+    .loc-icon { width: 44px; height: 44px; border-radius: 12px; background: rgba(212, 169, 79, 0.12); border: 1px solid var(--line); color: var(--gold); display: flex; align-items: center; justify-content: center; font-size: 18px; flex-shrink: 0; }
+    .loc-text h4 { font-size: 16px; font-weight: 700; color: #fff; margin-bottom: 4px; }
+    .loc-text p { font-size: 14px; color: var(--muted); }
+    .map-frame-wrapper { min-height: 320px; position: relative; background: #111; }
+    .map-frame-wrapper iframe { width: 100%; height: 100%; min-height: 320px; border: none; }
+    .site-footer { background: #050705; border-top: 1px solid var(--border); padding: 50px 5% 30px; text-align: center; }
+    .footer-socials { display: flex; justify-content: center; gap: 16px; margin: 24px 0 28px; }
+    .social-btn { width: 44px; height: 44px; border-radius: 50%; background: rgba(255, 255, 255, 0.05); border: 1px solid var(--border); color: var(--cream); display: flex; align-items: center; justify-content: center; font-size: 18px; }
+    .footer-copy { font-size: 13px; color: var(--muted); margin-top: 20px; }
+    .footer-admin-link { display: inline-block; margin-top: 15px; font-size: 12px; color: var(--muted); cursor: pointer; }
+    .modal-overlay { position: fixed; inset: 0; background: rgba(0, 0, 0, 0.85); backdrop-filter: blur(8px); z-index: 2000; display: none; align-items: center; justify-content: center; padding: 20px; }
+    .modal-overlay.active { display: flex; }
+    .admin-card { background: #0f1410; border: 1px solid var(--line); border-radius: 20px; width: 100%; max-width: 850px; max-height: 85vh; display: flex; flex-direction: column; overflow: hidden; }
+    .admin-header { padding: 20px 25px; border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; }
+    .admin-body { padding: 25px; overflow-y: auto; }
+    .admin-tabs { display: flex; gap: 10px; border-bottom: 1px solid var(--border); padding-bottom: 12px; margin-bottom: 20px; }
+    .admin-tab-btn { background: none; border: 1px solid transparent; color: var(--muted); font-weight: 700; font-size: 13.5px; padding: 6px 14px; border-radius: 8px; cursor: pointer; }
+    .admin-tab-btn.active { background: rgba(212, 169, 79, 0.15); border-color: var(--line); color: var(--gold); }
+    .admin-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+    .admin-table th, .admin-table td { padding: 10px 12px; border-bottom: 1px solid rgba(255, 255, 255, 0.06); text-align: right; }
+    .admin-table th { color: var(--gold); }
+    .table-price-input { width: 70px; background: rgba(255, 255, 255, 0.06); border: 1px solid var(--border); border-radius: 6px; color: #fff; padding: 4px 8px; text-align: center; }
+    .btn-action-small { padding: 4px 8px; border-radius: 6px; font-size: 11px; cursor: pointer; border: none; }
+    .btn-del { background: rgba(239, 68, 68, 0.2); color: #f87171; }
+    .btn-toggle-stock { background: rgba(52, 211, 153, 0.2); color: #34d399; }
+    .btn-toggle-stock.off { background: rgba(156, 163, 175, 0.2); color: #9ca3af; }
+    .toast-box { position: fixed; bottom: 25px; left: 50%; transform: translateX(-50%) translateY(100px); background: #141c16; border: 1px solid var(--gold); color: #fff; padding: 12px 24px; border-radius: 30px; font-size: 14px; font-weight: 600; z-index: 3000; transition: transform 0.3s ease; display: flex; align-items: center; gap: 10px; }
+    .toast-box.show { transform: translateX(-50%) translateY(0); }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="brand-logo" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
+      <div class="logo-badge"><i class="fa-solid fa-mug-hot"></i></div>
+      <div class="brand-text"><h1>HAVEN</h1><span>CAFÉ & PLAYSTATION</span></div>
+    </div>
+    <nav class="nav-links">
+      <a href="#menu"><i class="fa-solid fa-book-open"></i> المنيو</a>
+      <a href="#gaming"><i class="fa-solid fa-gamepad"></i> البلايستيشن</a>
+      <a href="#social-hub"><i class="fa-solid fa-hashtag"></i> السوشيال ميديا</a>
+      <a href="#location"><i class="fa-solid fa-location-dot"></i> موقعنا</a>
+      <a href="#reviews"><i class="fa-solid fa-star"></i> التقييمات</a>
+    </nav>
+    <div class="header-actions">
+      <a href="https://wa.me/201024354656" target="_blank" class="btn-primary"><i class="fa-brands fa-whatsapp"></i><span>010 24354656</span></a>
+      <button class="btn-icon" onclick="openAdminModal()" title="لوحة الإدارة"><i class="fa-solid fa-lock"></i></button>
+    </div>
+  </header>
+
+  <section class="hero-section">
+    <div class="hero-content">
+      <div class="hero-badge"><i class="fa-solid fa-sparkles"></i><span>منورين في مكانكم الرايق</span></div>
+      <h2 class="hero-title">مرحباً بكم في <span>HAVEN</span><br>قهوة معمولة بمزاج.. وقعدة تليق بيكم</h2>
+      <p class="hero-desc">مكانكم المفضل للروقان وفصلان الدماغ. استمتعوا بأرقى أنواع القهوة المختصة V60، المشروبات المنعشة، والوافل الطازج مع أجواء بلايستيشن هادية ومريحة.</p>
+      <div class="hero-btns">
+        <a href="#menu" class="btn-primary" style="padding: 12px 28px; font-size: 15px;"><i class="fa-solid fa-utensils"></i><span>استكشفوا المنيو والأسعار</span></a>
+        <a href="#location" class="btn-secondary"><i class="fa-solid fa-diamond-turn-right"></i><span>عنوان هافن بدمياط</span></a>
+      </div>
+    </div>
+  </section>
+
+  <section class="menu-section" id="menu">
+    <div class="section-header">
+      <div class="section-tag">GOOD DRINKS • GOOD MOOD</div>
+      <h2 class="section-title">قائمة المشروبات والحلويات</h2>
+      <p style="color: var(--muted); font-size: 15px;">المنيو الأصلي المعتمد بالأسعار الرسمية الكاملة</p>
+      <div class="search-filter-box">
+        <div class="search-input-wrapper">
+          <i class="fa-solid fa-magnifying-glass search-icon"></i>
+          <input type="text" id="searchInput" placeholder="ابحث عن مشروبك أو طلبك المفضل..." oninput="handleSearch()">
+          <button class="clear-search" id="clearSearchBtn" onclick="clearSearch()"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+        <div class="categories-wrapper">
+          <button class="cat-scroll-btn right" id="scrollRightBtn" onclick="scrollCatBar('right')" title="السابق"><i class="fa-solid fa-chevron-right"></i></button>
+          <div class="categories-bar" id="categoryBar" onscroll="updateScrollButtons()"></div>
+          <button class="cat-scroll-btn left" id="scrollLeftBtn" onclick="scrollCatBar('left')" title="باقي الأقسام"><i class="fa-solid fa-chevron-left"></i></button>
+        </div>
+      </div>
+    </div>
+    <div class="menu-grid" id="menuGrid"></div>
+  </section>
+
+  <section class="quote-showcase">
+    <div class="quote-icon"><i class="fa-solid fa-quote-right"></i></div>
+    <div class="quote-text">" في قهوتي شئ من تفاصيلك "</div>
+    <div class="quote-sub">HAVEN CAFÉ & PLAYSTATION • GOOD VIBES ONLY</div>
+  </section>
+
+  <section class="gaming-section" id="gaming">
+    <div class="gaming-card-main">
+      <div class="gaming-info">
+        <div class="section-tag"><i class="fa-solid fa-gamepad"></i> PLAYSTATION ROOM</div>
+        <h3>روم بلايستيشن وقعدة رايقة.. <span>تفصل عن الدوشة وتجمع الصحاب</span></h3>
+        <p>في هافن عملنالكم روم مخصصة فيها بلايستيشن وتكييف وقعدة رايقة جداً تليق بيكم، تناسب اللعب والروقان واللمة الحلوة، شاشات 4K واضحة وصافية بدون أي دوشة إضاءات متعبة، ودراعات أصلية ونظيفة دايماً عشان تستمتعوا بكل ماتش وبكل جيم في خصوصية وراحة تامة.</p>
+        <div class="gaming-features">
+          <div class="gf-item"><i class="fa-solid fa-snowflake gf-icon"></i><div class="gf-text"><strong>روم متكيفة بالكامل</strong><small>جو مظبوط وراحة تامة طول وقت اللعب</small></div></div>
+          <div class="gf-item"><i class="fa-solid fa-tv gf-icon"></i><div class="gf-text"><strong>شاشات 4K فائقة الوضوح</strong><small>صورة ونقاء عالي لكل الألعاب</small></div></div>
+          <div class="gf-item"><i class="fa-solid fa-gamepad gf-icon"></i><div class="gf-text"><strong>دراعات أصلية ونظيفة</strong><small>استجابة سريعة وتجربة أصلية</small></div></div>
+          <div class="gf-item"><i class="fa-solid fa-couch gf-icon"></i><div class="gf-text"><strong>قعدة رايقة وخصوصية</strong><small>تفصلك عن الدوشة وتجمع شلتك وصحابك</small></div></div>
+        </div>
+        <div><a href="#menu" class="btn-primary" style="padding: 10px 22px;"><i class="fa-solid fa-book-open"></i><span>اطلب مشروبك مع الجيم</span></a></div>
+      </div>
+      <div class="gaming-visual">
+        <img src="https://images.unsplash.com/photo-1606813907291-d86efa9b94db?w=800&auto=format&fit=crop&q=80" alt="HAVEN PlayStation Room" loading="lazy">
+        <div class="gaming-overlay-badge">
+          <div class="logo-badge" style="width: 38px; height: 38px; font-size: 15px;"><i class="fa-solid fa-gamepad"></i></div>
+          <div><strong style="color: #fff; font-size: 14px; display: block;">روم برايفت وبطولات مع صحابك</strong><small style="color: var(--gold-light); font-size: 12px;">تكييف وقعدة رايقة في كفر سعد</small></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="social-hub-section" id="social-hub">
+    <div class="section-header">
+      <div class="section-tag"><i class="fa-solid fa-share-nodes"></i> CONNECT WITH HAVEN</div>
+      <h2 class="section-title">تابعوا وتواصلوا مع هافن أونلاين</h2>
+      <p style="color: var(--muted); font-size: 15px;">موجودين معاكم دايماً على كل المنصات، تابعوا عروضنا ومفاجآتنا أول بأول</p>
+    </div>
+    <div class="social-cards-grid">
+      <a href="https://www.facebook.com/people/%F0%93%86%A9-HAVEN-%F0%93%86%AA/61594570114340/#" target="_blank" class="social-card fb"><div class="sc-icon"><i class="fa-brands fa-facebook-f"></i></div><div class="sc-title">صفحة الفيسبوك</div><div class="sc-handle">HAVEN Café & PlayStation</div><span class="sc-btn">زيارة الصفحة</span></a>
+      <a href="https://www.instagram.com/haven38371?stkn=MWN2Y3l4enE1cmxreA%3D%3D&utm_source=qr" target="_blank" class="social-card insta"><div class="sc-icon"><i class="fa-brands fa-instagram"></i></div><div class="sc-title">إنستجرام هافن</div><div class="sc-handle">@haven38371</div><span class="sc-btn">تابعنا الآن</span></a>
+      <a href="https://www.tiktok.com/@haven19_u" target="_blank" class="social-card tiktok"><div class="sc-icon"><i class="fa-brands fa-tiktok"></i></div><div class="sc-title">تيك توك</div><div class="sc-handle">@haven19_u</div><span class="sc-btn">شوف الفيديوهات</span></a>
+      <a href="https://wa.me/201024354656" target="_blank" class="social-card wa"><div class="sc-icon"><i class="fa-brands fa-whatsapp"></i></div><div class="sc-title">واتساب وهاتف</div><div class="sc-handle" dir="ltr">010 24354656</div><span class="sc-btn">محادثة فورية</span></a>
+      <a href="mailto:HAVENCoFFE@gmail.com" class="social-card mail"><div class="sc-icon"><i class="fa-solid fa-envelope"></i></div><div class="sc-title">البريد الإلكتروني</div><div class="sc-handle">HAVENCoFFE@gmail.com</div><span class="sc-btn">مراسلتي</span></a>
+    </div>
+  </section>
+
+  <section class="reviews-section" id="reviews">
+    <div class="section-header">
+      <div class="section-tag">VOICES OF HAVEN</div>
+      <h2 class="section-title">شاركونا رأيكم في هافن</h2>
+      <p style="color: var(--muted); font-size: 14px;">رأيكم يهمنا وبيساعدنا نفضل دايماً عند حسن ظنكم</p>
+    </div>
+    <div class="reviews-layout">
+      <div class="review-form-card">
+        <h3>سيب رأيك وانطباعك</h3>
+        <p>شاركونا تجربتكم مع المشروبات والأجواء</p>
+        <form id="reviewForm" onsubmit="submitReview(event)">
+          <div class="form-group"><label>اسمكم الكريم</label><input type="text" id="revName" class="form-control" placeholder="اكتب اسمك هنا" required></div>
+          <div class="form-group">
+            <label>تقييمكم للتجربة</label>
+            <div class="star-rating-select" id="starRating">
+              <i class="fa-solid fa-star active" data-val="1"></i><i class="fa-solid fa-star active" data-val="2"></i><i class="fa-solid fa-star active" data-val="3"></i><i class="fa-solid fa-star active" data-val="4"></i><i class="fa-solid fa-star active" data-val="5"></i>
+            </div>
+            <input type="hidden" id="revRating" value="5">
+          </div>
+          <div class="form-group"><label>كلمتكم أو تعليقكم</label><textarea id="revComment" class="form-control" rows="3" placeholder="إيه أكتر حاجة عجبتكم في هافن؟" required></textarea></div>
+          <button type="submit" class="btn-primary" style="width: 100%; justify-content: center; padding: 12px;"><i class="fa-solid fa-paper-plane"></i><span>إرسال الرأي</span></button>
+        </form>
+      </div>
+      <div class="reviews-list" id="reviewsFeed"></div>
+    </div>
+  </section>
+
+  <section class="location-section" id="location">
+    <div class="location-card">
+      <div class="location-details">
+        <div class="section-tag">FIND US</div>
+        <h3 style="font-size: 24px; font-weight: 800; color: #fff; margin-bottom: 24px;">مكان هافن كافيه</h3>
+        <div class="loc-item"><div class="loc-icon"><i class="fa-solid fa-location-dot"></i></div><div class="loc-text"><h4>العنوان</h4><p>تفتيش كفر سعد - شارع مستشفى ابن سينا، دمياط، مصر</p></div></div>
+        <div class="loc-item"><div class="loc-icon"><i class="fa-solid fa-phone"></i></div><div class="loc-text"><h4>رقم الهاتف والواتساب</h4><p dir="ltr" style="text-align: right;">+20 10 24354656</p></div></div>
+        <div class="loc-item"><div class="loc-icon"><i class="fa-solid fa-envelope"></i></div><div class="loc-text"><h4>البريد الإلكتروني</h4><p>HAVENCoFFE@gmail.com</p></div></div>
+        <div style="margin-top: 15px;"><a href="https://www.google.com/maps?q=تفتيش+كفر+سعد+-+شارع+مستشفي+ابن+سينا+,+Damietta,+Egypt,+HAVEN11@&hl=en" target="_blank" class="btn-primary" style="padding: 12px 24px;"><i class="fa-solid fa-map-location-dot"></i><span>فتح في خرائط Google</span></a></div>
+      </div>
+      <div class="map-frame-wrapper"><iframe src="https://maps.google.com/maps?q=تفتيش%20كفر%20سعد%20شارع%20مستشفي%20ابن%20سينا%20دمياط&t=&z=15&ie=UTF8&iwloc=&output=embed" loading="lazy"></iframe></div>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="brand-logo" style="justify-content: center; margin-bottom: 12px;">
+      <div class="logo-badge" style="width: 40px; height: 40px; font-size: 16px;"><i class="fa-solid fa-mug-hot"></i></div>
+      <div class="brand-text" style="text-align: right;"><h2 style="font-size: 17px; color: var(--gold-light);">HAVEN</h2></div>
+    </div>
+    <p style="color: var(--muted); font-size: 14px;">Good Drinks. Better Vibes. دائماً في انتظار تشريفكم</p>
+    <div class="footer-socials">
+      <a href="https://www.facebook.com/people/%F0%93%86%A9-HAVEN-%F0%93%86%AA/61594570114340/#" target="_blank" class="social-btn"><i class="fa-brands fa-facebook-f"></i></a>
+      <a href="https://www.instagram.com/haven38371?stkn=MWN2Y3l4enE1cmxreA%3D%3D&utm_source=qr" target="_blank" class="social-btn"><i class="fa-brands fa-instagram"></i></a>
+      <a href="https://www.tiktok.com/@haven19_u" target="_blank" class="social-btn"><i class="fa-brands fa-tiktok"></i></a>
+      <a href="https://wa.me/201024354656" target="_blank" class="social-btn"><i class="fa-brands fa-whatsapp"></i></a>
+    </div>
+    <p class="footer-copy">© 2026 HAVEN Café & PlayStation. تفتيش كفر سعد، دمياط. جميع الحقوق محفوظة.</p>
+    <a class="footer-admin-link" onclick="openAdminModal()">لوحة تحكم الإدارة والاستاف 🔒</a>
+  </footer>
+
+  <div class="modal-overlay" id="adminModal">
+    <div class="admin-card">
+      <div class="admin-header">
+        <h3><i class="fa-solid fa-shield-halved"></i> لوحة إدارة HAVEN</h3>
+        <button class="btn-icon" style="width: 32px; height: 32px;" onclick="closeAdminModal()"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <div class="admin-body" id="adminLoginScreen">
+        <div style="max-width: 380px; margin: 40px auto; text-align: center;">
+          <i class="fa-solid fa-envelope" style="font-size: 40px; color: var(--gold); margin-bottom: 16px;"></i>
+          <h4 style="color: #fff; font-size: 18px; margin-bottom: 8px;">تسجيل دخول الإدارة</h4>
+          <p style="color: var(--muted); font-size: 13px; margin-bottom: 20px;">اكتب بريد الإدارة لإرسال رابط دخول مؤقت</p>
+          <input type="email" id="adminEmailInput" class="form-control" placeholder="البريد الإلكتروني" autocomplete="email" style="margin-bottom: 16px; text-align: center;">
+          <button class="btn-primary" style="width: 100%; justify-content: center; padding: 11px;" onclick="sendAdminMagicLink()"><span>إرسال رابط الدخول</span></button>
+        </div>
+      </div>
+      <div class="admin-body" id="adminDashboardScreen" style="display: none;">
+        <div class="admin-tabs">
+          <button class="admin-tab-btn active" onclick="switchAdminTab('items')">تعديل المنيو والأسعار</button>
+          <button class="admin-tab-btn" onclick="switchAdminTab('add', this)">+ إضافة صنف جديد</button>
+          <button class="admin-tab-btn" onclick="switchAdminTab('reviews', this)">إدارة الآراء</button>
+          <button class="admin-tab-btn" onclick="signOutAdmin()">تسجيل خروج</button>
+        </div>
+        <div id="tabItems">
+          <div style="margin-bottom: 12px; display: flex; justify-content: space-between; align-items: center;">
+            <span style="font-size: 13px; color: var(--muted);">عدّل السعر أو حالة التوفر مباشرة واضغط حفظ:</span>
+            <button class="btn-primary" style="font-size: 12px; padding: 6px 14px;" onclick="saveAllMenuChanges()"><i class="fa-solid fa-floppy-disk"></i> حفظ كافة التعديلات</button>
+          </div>
+          <div style="overflow-x: auto;"><table class="admin-table"><thead><tr><th>الصنف</th><th>القسم</th><th>السعر (ج.م)</th><th>الحالة</th><th>إجراء</th></tr></thead><tbody id="adminTableBody"></tbody></table></div>
+        </div>
+        <div id="tabAdd" style="display: none;">
+          <form onsubmit="handleAddNewItem(event)" style="max-width: 500px;">
+            <div class="form-group"><label>اسم الصنف الجديد</label><input type="text" id="newItemName" class="form-control" placeholder="مثال: فلات وايت كراميل" required></div>
+            <div class="form-group"><label>القسم</label><select id="newItemCat" class="form-control" required></select></div>
+            <div class="form-group"><label>السعر (بالجنيه)</label><input type="number" id="newItemPrice" class="form-control" placeholder="80" required></div>
+            <div class="form-group"><label>رابط الصورة (URL)</label><input type="url" id="newItemImg" class="form-control" placeholder="https://..." required></div>
+            <button type="submit" class="btn-primary" style="padding: 10px 20px;"><i class="fa-solid fa-plus"></i> إضافة الصنف للمنيو فوراً</button>
+          </form>
+        </div>
+        <div id="tabReviews" style="display: none;"><div id="adminReviewsList"></div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="toast-box" id="toastBox"><i class="fa-solid fa-circle-check" style="color: var(--gold);"></i><span id="toastMsg">تم الحفظ بنجاح</span></div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="supabase-config.js"></script>
+  <script>
+    const initialMenuItems = [
+      { id: 1, name: "شاي بريك فاست", cat: "هوت درينك", price: 25, img: "https://images.unsplash.com/photo-1576092768241-dec231879fc3?w=500&auto=format&fit=crop&q=80", inStock: true },
+      { id: 2, name: "شاي فروت", cat: "هوت درينك", price: 35, img: "https://images.unsplash.com/photo-1597481499750-3e6b22637e12?w=500&auto=format&fit=crop&q=80", inStock: true },
+      { id: 3, name: "هوت سيدار", cat: "هوت درينك", price: 50, img: "https://images.unsplash.com/photo-1513558161293-cdaf765ed2fd?w=500&auto=format&fit=crop&q=80", inStock: true },
+      { id: 4, name: "شاي كرك", cat: "هوت درينك", price: 60, img: "https://images.unsplash.com/photo-1561336313-0bd5e0b27ec8?w=500&auto=format&fit=crop&q=80", inStock: true },
+      { id: 5, name: "نسكافيه", cat: "هوت درينك", price: 60, img: "https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?w=500&auto=format&fit=crop&q=80", inStock: true },
+      { id: 6, name: "قهوه تركي", cat: "تركي", price: 30, img: "https://images.unsplash.com/photo-1578374173705-969cbe6f2d6b?w=500&auto=format&fit=crop&q=80", inStock: true },
+      { id: 7, name: "قهوه تركي محوج", cat: "تركي", price: 35, img: "https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?w=500&auto=format&fit=crop&q=80", inStock: true },
+      { id: 8, name: "قهوه تركي غامق", cat: "تركي", price: 35, img: "https://images.unsplash.com/photo-1511920170033-f8396924c348?w=500&auto=format&fit=crop&q=80", inStock: true },
+      { id: 9, name: "قهوه العميد", cat: "تركي", price: 50, img: "https://images.unsplash.com/photo-1521302080334-4bebac2763a6?w=500&auto=format&fit=crop&q=80", inStock: true },
+      { id: 10, name: "فرنساوي", cat: "كلاسيك فرنساوي", price: 60, img: "https://images.unsplash.com/photo-1534778101976-62847782c213?w=500&auto=format&fit=crop&q=80", inStock: true },
+      { id: 11, name: "بندق", cat: "كلاسيك فرنساوي", price: 60, img: "https://images.unsplash.com/photo-1572442388796-11668a67e53d?w=500&auto=format&fit=crop&q=80", inStock: true },
+      { id: 12, name: "قرفه", cat: "كلاسيك فرنساوي", price: 60, img: "https://images.unsplash.com/photo-1517701550927-30cf4ba1dba5?w=500&auto=format&fit=crop&q=80", inStock: true },
+      { id: 13, name: "نيوتيلا", cat: "كلاسيك فرنساوي", price: 70, img: "https://images.unsplash.com/photo-1544787219-7f47ccb76574?w=500&auto=format&fit=crop&q=80", inStock: true },
+      { id: 14, name: "لوتس", cat: "كلاسيك فرنساوي", price: 70, img: "https://images.unsplash.com/photo-1517256064527-09c73fc73e38?w=500&auto=format&fit=crop&q=80", inStock: true },
+      { id: 15, name: "هوت شوكلت دارك", cat: "هوت شوكلت", price: 70, img: "https://images.unsplash.com/photo-1542990253-0d0f5be5f0ed?w=500&auto=format&fit=crop&q=80", inStock: true },
+      { id: 16, name: "هوت شوكلت اوريو", cat: "هوت شوكلت", price: 80, img: "https://images.unsplash.com/photo-1572490122747-3968b75cc699?w=500&auto=format&fit=crop&q=80", inStock: true },
+      { id: 17, name: "هوت شوكلت وايت كراميل", cat: "هوت شوكلت", price: 80, img: "https://images.unsplash.com/photo-1517578239113-b03992dcdd25?w=500&auto=format&fit=crop&q=80", inStock: true },
+      { id: 18, name: "هوت شوكلت مارشميلو", cat: "هوت شوكلت", price: 80, img: "https://images.unsplash.com/photo-1544787219-7f47ccb76574?w=500&auto=format&fit=crop&q=80", inStock: true },
+      { id: 19, name: "هوت شوكلت ويب كريم", cat: "هوت شوكلت", price: 80, img: "https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?w=500&auto=format&fit=crop&q=80", inStock: true },
+      { id: 20, name: "هوت شوكلت لوتس", cat: "هوت شوكلت", price: 80, img: "https://images.unsplash.com/photo-1588195538326-c5b1e9f80a1b?w=500&auto=format&fit=crop&q=80", inStock: true },
+      { id: 21, name: "هوت شوكلت مالتيزرز", cat: "هوت شوكلت", price: 100, img: "https://images.unsplash.com/photo-1572490122747-3968b75cc699?w=500&auto=format&fit=crop&q=80", inStock: true },
+      { id: 22, name: "هوت شوكلت تراميسو", cat: "هوت شوكلت", price: 100, img: "https://images.unsplash.com/photo-1542990253-0d0f5be5f0ed?w=500&auto=format&fit=crop&q=80", inStock: true },
+      { id: 23, name: "ديبو", cat: "هوت اسبرسو", price: 50, img: "https://images.unsplash.com/photo-1510591509098-f4fdc6d0ff04?w=500&auto=format&fit=crop&q=80", inStock: true },
+      { id: 24, name: "كروتادو", cat: "هوت اسبرسو", price: 70, img: "https://images.unsplash.com/photo-1534778101976-62847782c213?w=500&auto=format&fit=crop&q=80", inStock: true },
+      { id: 25, name: "فلات وايت", cat: "هوت اسبرسو", price: 70, img: "https://images.unsplash.com/photo-1577968897966-3d4325b36b61?w=500&auto=format&fit=crop&q=80", inStock: true },
+      { id: 26, name: "امريكان", cat: "هوت اسبرسو", price: 80, img: "https://images.unsplash.com/photo-1551030173-122aabc4489c?w=500&auto=format&fit=crop&q=80", inStock: true },
+      { id: 27, name: "كابتشينو", cat: "هوت اسبرسو", price: 80, img: "https://images.unsplash.com/photo-1534778101976-62847782c213?w=500&auto=format&fit=crop&q=80", inStock: true },
+      { id: 28, name: "ماتشا", cat: "هوت اسبرسو", price: 80, img: "https://images.unsplash.com/photo-1536256263959-770b48d82b0a?w=500&auto=format&fit=crop&q=80", inStock: true },
+      { id: 29, name: "سولتد كراميل", cat: "هوت اسبرسو", price: 100, img: "https://images.unsplash.com/photo-1517256064527-09c73fc73e38?w=500&auto=format&fit=crop&q=80", inStock: true },
+      { id: 30, name: "وايت دراك موكا", cat: "هوت اسبرسو", price: 100, img: "https://images.unsplash.com/photo-1578374173705-969cbe6f2d6b?w=500&auto=format&fit=crop&q=80", inStock: true },
+      { id: 31, name: "اسبانش", cat: "هوت اسبرسو", price: 100, img: "https://images.unsplash.com/photo-1541167760496-1628856ab772?w=500&auto=format&fit=crop&q=80", inStock: true },
+      { id: 32, name: "اسبرسو افوكادو", cat: "هوت اسبرسو", price: 120, img: "https://images.unsplash.com/photo-1517701550927-30cf4ba1dba5?w=500&auto=format&fit=crop&q=80", inStock: true },
+      { id: 33, name: "كولومبي V60", cat: "قهوة فلتر", price: 120, img: "https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=500&auto=format&fit=crop&q=80", inStock: true },
+      { id: 34, name: "اربيكا V60", cat: "قهوة فلتر", price: 120, img: "https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?w=500&auto=format&fit=crop&q=80", inStock: true },
+      { id: 35, name: "رواندي V60", cat: "قهوة فلتر", price: 120, img: "https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=500&auto=format&fit=crop&q=80", inStock: true },
+      { id: 36, name: "Cold coffee ايس كوفي", cat: "قهوة فلتر", price: 120, img: "https://images.unsplash.com/photo-1517701550927-30cf4ba1dba5?w=500&auto=format&fit=crop&q=80", inStock: true },
+      { id: 37, name: "ايس امريكان", cat: "ايس كوفي", price: 80, img: "https://images.unsplash.com/photo-1517701550927-30cf4ba1dba5?w=500&auto=format&fit=crop&q=80", inStock: true },
+      { id: 38, name: "ايس لاتيه", cat: "ايس كوفي", price: 80, img: "https://images.unsplash.com/photo-1461023058943-07fcbe16d735?w=500&auto=format&fit=crop&q=80", inStock: true },
+      { id: 39, name: "ايس سواتد كراميل", cat: "ايس كوفي", price: 100, img: "https://images.unsplash.com/photo-1517256064527-09c73fc73e38?w=500&auto=format&fit=crop&q=80", inStock: true },
+      { id: 40, name: "ايس كراميل ميكاتو", cat: "ايس كوفي", price: 100, img: "https://images.unsplash.com/photo-1572490122747-3968b75cc699?w=500&auto=format&fit=crop&q=80", inStock: true },
+      { id: 41, name: "ايس اسبانش لاتيه", cat: "ايس كوفي", price: 100, img: "https://images.unsplash.com/photo-1541167760496-1628856ab772?w=500&auto=format&fit=crop&q=80", inStock: true },
+      { id: 42, name: "ايس كريم بروليه", cat: "ايس كوفي", price: 100, img: "https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=500&auto=format&fit=crop&q=80", inStock: true },
+      { id: 43, name: "ايس موكا", cat: "ايس كوفي", price: 100, img: "https://images.unsplash.com/photo-1578374173705-969cbe6f2d6b?w=500&auto=format&fit=crop&q=80", inStock: true },
+      { id: 44, name: "ايس لاتيه ميجا", cat: "ايس كوفي", price: 120, img: "https://images.unsplash.com/photo-1517701550927-30cf4ba1dba5?w=500&auto=format&fit=crop&q=80", inStock: true },
+      { id: 45, name: "ايس لاتيه بوبا", cat: "ايس كوفي", price: 120, img: "https://images.unsplash.com/photo-1558857563-b371f31ca7fc?w=500&auto=format&fit=crop&q=80", inStock: true },
+      { id: 46, name: "ماتشا ايس", cat: "ايس كوفي", price: 120, img: "https://images.unsplash.com/photo-1536256263959-770b48d82b0a?w=500&auto=format&fit=crop&q=80", inStock: true },
+      { id: 47, name: "فرابيه موكا", cat: "فرابيه", price: 100, img: "https://images.unsplash.com/photo-1572490122747-3968b75cc699?w=500&auto=format&fit=crop&q=80", inStock: true },
+      { id: 48, name: "فرابيه كوفي", cat: "فرابيه", price: 100, img: "https://images.unsplash.com/photo-1517701550927-30cf4ba1dba5?w=500&auto=format&fit=crop&q=80", inStock: true },
+      { id: 49, name: "فرابيه وايت موكا", cat: "فرابيه", price: 100, img: "https://images.unsplash.com/photo-1578374173705-969cbe6f2d6b?w=500&auto=format&fit=crop&q=80", inStock: true },
+      { id: 50, name: "فرابيه كراميل", cat: "فرابيه", price: 100, img: "https://images.unsplash.com/photo-1517256064527-09c73fc73e38?w=500&auto=format&fit=crop&q=80", inStock: true },
+      { id: 51, name: "فرابيه تشيز كيك", cat: "فرابيه", price: 120, img: "https://images.unsplash.com/photo-1533134242443-d4fd215305ad?w=500&auto=format&fit=crop&q=80", inStock: true },
+      { id: 52, name: "فرابيه كوفي كريمي", cat: "فرابيه", price: 120, img: "https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?w=500&auto=format&fit=crop&q=80", inStock: true },
+      { id: 53, name: "فرابيه كوكيز", cat: "فرابيه", price: 150, img: "https://images.unsplash.com/photo-1563805042-7684c019e1cb?w=500&auto=format&fit=crop&q=80", inStock: true },
+      { id: 54, name: "مانجا فريش", cat: "فريش", price: 70, img: "https://images.unsplash.com/photo-1546173159-315724a31696?w=500&auto=format&fit=crop&q=80", inStock: true },
+      { id: 55, name: "فراولة فريش", cat: "فريش", price: 70, img: "https://images.unsplash.com/photo-1553530666-ba11a7da3888?w=500&auto=format&fit=crop&q=80", inStock: true },
+      { id: 56, name: "برتقال فريش", cat: "فريش", price: 70, img: "https://images.unsplash.com/photo-1613478223719-2ab802602423?w=500&auto=format&fit=crop&q=80", inStock: true },
+      { id: 57, name: "ليمون فريش", cat: "فريش", price: 70, img: "https://images.unsplash.com/photo-1513558161293-cdaf765ed2fd?w=500&auto=format&fit=crop&q=80", inStock: true },
+      { id: 58, name: "كيوي فريش", cat: "فريش", price: 100, img: "https://images.unsplash.com/photo-1585059895524-72359e06133a?w=500&auto=format&fit=crop&q=80", inStock: true },
+      { id: 59, name: "افوكادو فريش", cat: "فريش", price: 100, img: "https://images.unsplash.com/photo-1523049673857-eb18f1d7b578?w=500&auto=format&fit=crop&q=80", inStock: true },
+      { id: 60, name: "افوكادو مكسرات", cat: "فريش", price: 120, img: "https://images.unsplash.com/photo-1601039641847-7857b994d704?w=500&auto=format&fit=crop&q=80", inStock: true },
+      { id: 61, name: "موهيتو كلاسيك", cat: "صودا", price: 80, img: "https://images.unsplash.com/photo-1551538827-9c037cb4f32a?w=500&auto=format&fit=crop&q=80", inStock: true },
+      { id: 62, name: "موهيتو فيلفر", cat: "صودا", price: 100, img: "https://images.unsplash.com/photo-1513558161293-cdaf765ed2fd?w=500&auto=format&fit=crop&q=80", inStock: true },
+      { id: 63, name: "بلو باشون", cat: "صودا", price: 100, img: "https://images.unsplash.com/photo-1560512823-829485b8bf24?w=500&auto=format&fit=crop&q=80", inStock: true },
+      { id: 64, name: "بلو بيتش", cat: "صودا", price: 100, img: "https://images.unsplash.com/photo-1513558161293-cdaf765ed2fd?w=500&auto=format&fit=crop&q=80", inStock: true },
+      { id: 65, name: "شيري كولا", cat: "صودا", price: 80, img: "https://images.unsplash.com/photo-1622483767028-3f66f32aef97?w=500&auto=format&fit=crop&q=80", inStock: true },
+      { id: 66, name: "جيلي كولا", cat: "صودا", price: 80, img: "https://images.unsplash.com/photo-1581006852262-e4307cf6283a?w=500&auto=format&fit=crop&q=80", inStock: true },
+      { id: 67, name: "يوسفي فراوله كلاودي", cat: "صودا", price: 120, img: "https://images.unsplash.com/photo-1553530666-ba11a7da3888?w=500&auto=format&fit=crop&q=80", inStock: true },
+      { id: 68, name: "جيلي اناناس كلاودي", cat: "صودا", price: 120, img: "https://images.unsplash.com/photo-1513558161293-cdaf765ed2fd?w=500&auto=format&fit=crop&q=80", inStock: true },
+      { id: 69, name: "مانجا فراوله كلاودي", cat: "صودا", price: 120, img: "https://images.unsplash.com/photo-1546173159-315724a31696?w=500&auto=format&fit=crop&q=80", inStock: true },
+      { id: 70, name: "كيوي تفاح اخضر كلاودي", cat: "صودا", price: 120, img: "https://images.unsplash.com/photo-1585059895524-72359e06133a?w=500&auto=format&fit=crop&q=80", inStock: true },
+      { id: 71, name: "جوز هند اناناس تفاح", cat: "صودا", price: 120, img: "https://images.unsplash.com/photo-1513558161293-cdaf765ed2fd?w=500&auto=format&fit=crop&q=80", inStock: true },
+      { id: 72, name: "رد بول فلفير", cat: "صودا", price: 100, img: "https://images.unsplash.com/photo-1551024709-8f23befc6f87?w=500&auto=format&fit=crop&q=80", inStock: true },
+      { id: 73, name: "ميلك شيك مانجا", cat: "ميلك شيك", price: 80, img: "https://images.unsplash.com/photo-1572490122747-3968b75cc699?w=500&auto=format&fit=crop&q=80", inStock: true },
+      { id: 74, name: "ميلك شيك باشون", cat: "ميلك شيك", price: 80, img: "https://images.unsplash.com/photo-1553530666-ba11a7da3888?w=500&auto=format&fit=crop&q=80", inStock: true },
+      { id: 75, name: "ميلك شيك تشيز كيك", cat: "ميلك شيك", price: 100, img: "https://images.unsplash.com/photo-1533134242443-d4fd215305ad?w=500&auto=format&fit=crop&q=80", inStock: true },
+      { id: 76, name: "ميلك شيك براونيز", cat: "ميلك شيك", price: 100, img: "https://images.unsplash.com/photo-1572490122747-3968b75cc699?w=500&auto=format&fit=crop&q=80", inStock: true },
+      { id: 77, name: "ميلك شيك كاجو", cat: "ميلك شيك", price: 100, img: "https://images.unsplash.com/photo-1579954115545-a95591f28bfc?w=500&auto=format&fit=crop&q=80", inStock: true },
+      { id: 78, name: "ميلك شيك بلوبيري", cat: "ميلك شيك", price: 100, img: "https://images.unsplash.com/photo-1553530666-ba11a7da3888?w=500&auto=format&fit=crop&q=80", inStock: true },
+      { id: 79, name: "ميلك شيك اوريو", cat: "ميلك شيك", price: 100, img: "https://images.unsplash.com/photo-1572490122747-3968b75cc699?w=500&auto=format&fit=crop&q=80", inStock: true },
+      { id: 80, name: "ميلك شيك كيندار", cat: "ميلك شيك", price: 120, img: "https://images.unsplash.com/photo-1563805042-7684c019e1cb?w=500&auto=format&fit=crop&q=80", inStock: true },
+      { id: 81, name: "ميلك شيك لوتس", cat: "ميلك شيك", price: 100, img: "https://images.unsplash.com/photo-1588195538326-c5b1e9f80a1b?w=500&auto=format&fit=crop&q=80", inStock: true },
+      { id: 82, name: "ميلك شيك فسدق", cat: "ميلك شيك", price: 150, img: "https://images.unsplash.com/photo-1579954115545-a95591f28bfc?w=500&auto=format&fit=crop&q=80", inStock: true },
+      { id: 83, name: "ميلك شيك نيوتبندق", cat: "ميلك شيك", price: 120, img: "https://images.unsplash.com/photo-1572490122747-3968b75cc699?w=500&auto=format&fit=crop&q=80", inStock: true },
+      { id: 84, name: "ايس شوكلت دارك", cat: "ايس شوكلت", price: 80, img: "https://images.unsplash.com/photo-1542990253-0d0f5be5f0ed?w=500&auto=format&fit=crop&q=80", inStock: true },
+      { id: 85, name: "ايس شوكلت نيوتيلا", cat: "ايس شوكلت", price: 100, img: "https://images.unsplash.com/photo-1572490122747-3968b75cc699?w=500&auto=format&fit=crop&q=80", inStock: true },
+      { id: 86, name: "ايس شوكلت براونيز", cat: "ايس شوكلت", price: 100, img: "https://images.unsplash.com/photo-1563805042-7684c019e1cb?w=500&auto=format&fit=crop&q=80", inStock: true },
+      { id: 87, name: "ايس شوكلت كراميل", cat: "ايس شوكلت", price: 80, img: "https://images.unsplash.com/photo-1517256064527-09c73fc73e38?w=500&auto=format&fit=crop&q=80", inStock: true },
+      { id: 88, name: "ايس شوكلت لوتس", cat: "ايس شوكلت", price: 100, img: "https://images.unsplash.com/photo-1588195538326-c5b1e9f80a1b?w=500&auto=format&fit=crop&q=80", inStock: true },
+      { id: 89, name: "ايس بوبا فراوله", cat: "ايس بوبا", price: 80, img: "https://images.unsplash.com/photo-1558857563-b371f31ca7fc?w=500&auto=format&fit=crop&q=80", inStock: true },
+      { id: 90, name: "ايس بوبا مانجا", cat: "ايس بوبا", price: 80, img: "https://images.unsplash.com/photo-1546173159-315724a31696?w=500&auto=format&fit=crop&q=80", inStock: true },
+      { id: 91, name: "ايس بوبا بلوبيري", cat: "ايس بوبا", price: 80, img: "https://images.unsplash.com/photo-1558857563-b371f31ca7fc?w=500&auto=format&fit=crop&q=80", inStock: true },
+      { id: 92, name: "ايس بوبا خوخ", cat: "ايس بوبا", price: 80, img: "https://images.unsplash.com/photo-1553530666-ba11a7da3888?w=500&auto=format&fit=crop&q=80", inStock: true },
+      { id: 93, name: "وافل نيوتيلا", cat: "وافل", price: 100, img: "https://images.unsplash.com/photo-1562376552-0d160a2f238d?w=500&auto=format&fit=crop&q=80", inStock: true },
+      { id: 94, name: "وافل اوريو", cat: "وافل", price: 120, img: "https://images.unsplash.com/photo-1598214886806-c87b84b7078b?w=500&auto=format&fit=crop&q=80", inStock: true },
+      { id: 95, name: "وافل وايت شوكلت", cat: "وافل", price: 120, img: "https://images.unsplash.com/photo-1562376552-0d160a2f238d?w=500&auto=format&fit=crop&q=80", inStock: true },
+      { id: 96, name: "وافل كيندار", cat: "وافل", price: 120, img: "https://images.unsplash.com/photo-1598214886806-c87b84b7078b?w=500&auto=format&fit=crop&q=80", inStock: true },
+      { id: 97, name: "وافل لوتس", cat: "وافل", price: 120, img: "https://images.unsplash.com/photo-1562376552-0d160a2f238d?w=500&auto=format&fit=crop&q=80", inStock: true },
+      { id: 98, name: "وافل كيندار وايت", cat: "وافل", price: 120, img: "https://images.unsplash.com/photo-1598214886806-c87b84b7078b?w=500&auto=format&fit=crop&q=80", inStock: true },
+      { id: 99, name: "وافل فروت", cat: "وافل", price: 120, img: "https://images.unsplash.com/photo-1562376552-0d160a2f238d?w=500&auto=format&fit=crop&q=80", inStock: true },
+      { id: 100, name: "وافل فروحا", cat: "وافل", price: 120, img: "https://images.unsplash.com/photo-1598214886806-c87b84b7078b?w=500&auto=format&fit=crop&q=80", inStock: true },
+      { id: 101, name: "وافل ميجا", cat: "وافل", price: 120, img: "https://images.unsplash.com/photo-1562376552-0d160a2f238d?w=500&auto=format&fit=crop&q=80", inStock: true },
+      { id: 102, name: "وافل ويتش", cat: "وافل", price: 120, img: "https://images.unsplash.com/photo-1598214886806-c87b84b7078b?w=500&auto=format&fit=crop&q=80", inStock: true },
+      { id: 103, name: "كوكيز", cat: "الديزرت", price: 80, img: "https://images.unsplash.com/photo-1499636136210-6f4ee915583e?w=500&auto=format&fit=crop&q=80", inStock: true },
+      { id: 104, name: "كوكيز تارت", cat: "الديزرت", price: 120, img: "https://images.unsplash.com/photo-1558961363-fa8fdf82db35?w=500&auto=format&fit=crop&q=80", inStock: true },
+      { id: 105, name: "بروانيز", cat: "الديزرت", price: 100, img: "https://images.unsplash.com/photo-1606313564200-e75d5e30476c?w=500&auto=format&fit=crop&q=80", inStock: true },
+      { id: 106, name: "تشيز كيك", cat: "الديزرت", price: 100, img: "https://images.unsplash.com/photo-1533134242443-d4fd215305ad?w=500&auto=format&fit=crop&q=80", inStock: true },
+      { id: 107, name: "تراميسو", cat: "الديزرت", price: 120, img: "https://images.unsplash.com/photo-1571877227200-a0d98ea607e9?w=500&auto=format&fit=crop&q=80", inStock: true },
+      { id: 108, name: "مولتن كيك", cat: "الديزرت", price: 100, img: "https://images.unsplash.com/photo-1606313564200-e75d5e30476c?w=500&auto=format&fit=crop&q=80", inStock: true },
+      { id: 109, name: "مولتن ميجا", cat: "الديزرت", price: 120, img: "https://images.unsplash.com/photo-1624353365286-3f8d62daad51?w=500&auto=format&fit=crop&q=80", inStock: true },
+      { id: 110, name: "سان سبتين", cat: "الديزرت", price: 120, img: "https://images.unsplash.com/photo-1508737027454-e6454ef45afd?w=500&auto=format&fit=crop&q=80", inStock: true },
+      { id: 111, name: "هاني كيك", cat: "الديزرت", price: 100, img: "https://images.unsplash.com/photo-1587314168485-3236d6710814?w=500&auto=format&fit=crop&q=80", inStock: true },
+      { id: 112, name: "روشيه بندق", cat: "الديزرت", price: 100, img: "https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=500&auto=format&fit=crop&q=80", inStock: true },
+      { id: 113, name: "موسي جلاكسي", cat: "الديزرت", price: 100, img: "https://images.unsplash.com/photo-1541781774459-bb2af2f05b55?w=500&auto=format&fit=crop&q=80", inStock: true },
+      { id: 114, name: "دراجوان بولز", cat: "الديزرت", price: 100, img: "https://images.unsplash.com/photo-1563805042-7684c019e1cb?w=500&auto=format&fit=crop&q=80", inStock: true },
+      { id: 115, name: "كرواسو", cat: "الديزرت", price: 80, img: "https://images.unsplash.com/photo-1555507036-ab1f4038808a?w=500&auto=format&fit=crop&q=80", inStock: true },
+      { id: 116, name: "كرواسو باستري", cat: "الديزرت", price: 120, img: "https://images.unsplash.com/photo-1555507036-ab1f4038808a?w=500&auto=format&fit=crop&q=80", inStock: true },
+      { id: 117, name: "ويب كريم صوص مارشميلو", cat: "اضافات", price: 25, img: "https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?w=500&auto=format&fit=crop&q=80", inStock: true },
+      { id: 118, name: "ميجا بوبا كان", cat: "اضافات", price: 25, img: "https://images.unsplash.com/photo-1558857563-b371f31ca7fc?w=500&auto=format&fit=crop&q=80", inStock: true },
+      { id: 119, name: "مياه", cat: "سوفت درينك", price: 10, img: "https://images.unsplash.com/photo-1548839140-29a749e1bc4e?w=500&auto=format&fit=crop&q=80", inStock: true },
+      { id: 120, name: "بيبيسي", cat: "سوفت درينك", price: 40, img: "https://images.unsplash.com/photo-1629203851122-3726ecdf080e?w=500&auto=format&fit=crop&q=80", inStock: true },
+      { id: 121, name: "بيبيسي فري", cat: "سوفت درينك", price: 40, img: "https://images.unsplash.com/photo-1629203851122-3726ecdf080e?w=500&auto=format&fit=crop&q=80", inStock: true },
+      { id: 122, name: "في كولا", cat: "سوفت درينك", price: 40, img: "https://images.unsplash.com/photo-1622483767028-3f66f32aef97?w=500&auto=format&fit=crop&q=80", inStock: true },
+      { id: 123, name: "في كولا فري", cat: "سوفت درينك", price: 40, img: "https://images.unsplash.com/photo-1622483767028-3f66f32aef97?w=500&auto=format&fit=crop&q=80", inStock: true },
+      { id: 124, name: "رد بول", cat: "سوفت درينك", price: 90, img: "https://images.unsplash.com/photo-1551024709-8f23befc6f87?w=500&auto=format&fit=crop&q=80", inStock: true },
+      { id: 125, name: "رد بول فري", cat: "سوفت درينك", price: 90, img: "https://images.unsplash.com/photo-1551024709-8f23befc6f87?w=500&auto=format&fit=crop&q=80", inStock: true },
+      { id: 126, name: "رد بول توت", cat: "سوفت درينك", price: 90, img: "https://images.unsplash.com/photo-1551024709-8f23befc6f87?w=500&auto=format&fit=crop&q=80", inStock: true },
+      { id: 127, name: "رد بول وايت", cat: "سوفت درينك", price: 90, img: "https://images.unsplash.com/photo-1551024709-8f23befc6f87?w=500&auto=format&fit=crop&q=80", inStock: true },
+      { id: 128, name: "شيشه ايمي", cat: "شيشه", price: 120, img: "https://images.unsplash.com/photo-1518895949257-7621c3c786d7?w=500&auto=format&fit=crop&q=80", inStock: true },
+      { id: 129, name: "شيشه تيبول", cat: "شيشه", price: 100, img: "https://images.unsplash.com/photo-1527661591475-527312dd65f5?w=500&auto=format&fit=crop&q=80", inStock: true }
+    ];
+
+    let menuItems = initialMenuItems;
+    let reviewsData = [];
+    let adminSession = null;
+    let currentCategory = 'all';
+    function getAllCategories() {
+      return ['all', ...new Set(menuItems.map(item => item.cat))];
+    }
+    const supabaseConfigured = window.HAVEN_SUPABASE_URL &&
+      !window.HAVEN_SUPABASE_URL.startsWith('YOUR_') &&
+      window.HAVEN_SUPABASE_ANON_KEY &&
+      !window.HAVEN_SUPABASE_ANON_KEY.startsWith('YOUR_');
+    const supabaseClient = supabaseConfigured && window.supabase
+      ? window.supabase.createClient(window.HAVEN_SUPABASE_URL, window.HAVEN_SUPABASE_ANON_KEY)
+      : null;
+
+    function toMenuRow(item) {
+      return { id: item.id, name: item.name, cat: item.cat, price: item.price, img: item.img, in_stock: item.inStock !== false };
+    }
+
+    function fromMenuRow(item) {
+      return { id: item.id, name: item.name, cat: item.cat, price: Number(item.price), img: item.img, inStock: item.in_stock };
+    }
+
+    async function fetchCloudData() {
+      if (!supabaseClient) return;
+      try {
+        const [menuResult, reviewsResult] = await Promise.all([
+          supabaseClient.from('menu_items').select('*').order('id'),
+          supabaseClient.from('reviews').select('*').order('created_at', { ascending: false })
+        ]);
+        if (menuResult.error) throw menuResult.error;
+        if (reviewsResult.error) throw reviewsResult.error;
+        if (menuResult.data.length) menuItems = menuResult.data.map(fromMenuRow);
+        if (adminSession && !menuResult.data.length) {
+          const { error } = await supabaseClient.from('menu_items').insert(initialMenuItems.map(toMenuRow));
+          if (error) throw error;
+          menuItems = initialMenuItems;
+        }
+        reviewsData = reviewsResult.data.map(review => ({
+          id: review.id,
+          name: review.name,
+          rating: review.rating,
+          comment: review.comment,
+          timestamp: Date.parse(review.created_at),
+          approved: review.approved
+        }));
+        renderCategoryBar();
+        renderMenu();
+        renderReviews();
+        if (adminSession) loadAdminReviews();
+      } catch (error) {
+        console.error('Supabase load failed:', error.message);
+        showToast('تعذر تحميل البيانات من قاعدة البيانات');
+      }
+    }
+
+    function subscribeToCloudChanges() {
+      if (!supabaseClient) return;
+      supabaseClient.channel('haven-public-changes')
+        .on('postgres_changes', { event: '*', schema: 'public', table: 'menu_items' }, fetchCloudData)
+        .on('postgres_changes', { event: '*', schema: 'public', table: 'reviews' }, fetchCloudData)
+        .subscribe();
+    }
+
+    async function restoreAdminSession() {
+      if (!supabaseClient) return;
+      const { data: { session } } = await supabaseClient.auth.getSession();
+      if (!session) return;
+      const { data: isAdmin, error } = await supabaseClient.rpc('is_haven_admin');
+      if (error || !isAdmin) return;
+      adminSession = session;
+      document.getElementById('adminLoginScreen').style.display = 'none';
+      document.getElementById('adminDashboardScreen').style.display = 'block';
+    }
+
+    window.addEventListener('DOMContentLoaded', async () => {
+      await restoreAdminSession();
+      await fetchCloudData();
+      subscribeToCloudChanges();
+      renderCategoryBar();
+      setTimeout(updateScrollButtons, 150);
+      renderMenu();
+      renderReviews();
+      populateCategoryDropdown();
+      setupStarRatingListener();
+      if (adminSession) {
+        loadAdminTable();
+        loadAdminReviews();
+      }
+    });
+
+    function renderCategoryBar() {
+      const container = document.getElementById('categoryBar');
+      container.innerHTML = getAllCategories().map(cat => {
+        const title = cat === 'all' ? 'الكل' : cat;
+        return `<button class="cat-btn ${cat === currentCategory ? 'active' : ''}" data-category="${escapeHtml(cat)}">${escapeHtml(title)}</button>`;
+      }).join('');
+      container.querySelectorAll('.cat-btn').forEach(button => {
+        button.addEventListener('click', () => selectCategory(button.dataset.category));
+      });
+    }
+
+    function scrollCatBar(direction) {
+      const bar = document.getElementById('categoryBar');
+      const offset = direction === 'left' ? -240 : 240;
+      bar.scrollBy({ left: offset, behavior: 'smooth' });
+    }
+
+    function updateScrollButtons() {
+      const bar = document.getElementById('categoryBar');
+      const leftBtn = document.getElementById('scrollLeftBtn');
+      const rightBtn = document.getElementById('scrollRightBtn');
+      if (!bar || !leftBtn || !rightBtn) return;
+      const maxScroll = bar.scrollWidth - bar.clientWidth;
+      const currentScroll = Math.abs(bar.scrollLeft);
+      rightBtn.style.display = currentScroll > 20 ? 'flex' : 'none';
+      leftBtn.style.display = (maxScroll - currentScroll) > 20 ? 'flex' : 'none';
+    }
+
+    function selectCategory(cat) {
+      currentCategory = cat;
+      renderCategoryBar();
+      renderMenu();
+    }
+
+    function renderMenu() {
+      const grid = document.getElementById('menuGrid');
+      const searchKeyword = document.getElementById('searchInput').value.trim().toLowerCase();
+      const filtered = menuItems.filter(item => {
+        const matchesCat = currentCategory === 'all' || item.cat === currentCategory;
+        const matchesSearch = !searchKeyword || item.name.toLowerCase().includes(searchKeyword) || item.cat.toLowerCase().includes(searchKeyword);
+        const matchesStock = item.inStock !== false;
+        return matchesCat && matchesSearch && matchesStock;
+      });
+      if (filtered.length === 0) {
+        grid.innerHTML = `<div style="grid-column: 1/-1; text-align: center; padding: 50px 20px; color: var(--muted);"><i class="fa-solid fa-mug-hot" style="font-size: 36px; color: var(--gold); margin-bottom: 15px;"></i><p style="font-size: 16px;">مفيش أصناف مطابقة للبحث حالياً</p></div>`;
+        return;
+      }
+      grid.innerHTML = filtered.map(item => `
+        <div class="menu-card">
+          <div class="card-img-wrap"><img src="${escapeHtml(item.img)}" alt="${escapeHtml(item.name)}" loading="lazy"><span class="card-category-badge">${escapeHtml(item.cat)}</span></div>
+          <div class="card-body">
+            <h4 class="card-title">${escapeHtml(item.name)}</h4>
+            <div class="card-footer"><div class="card-price">${item.price} <small>ج.م</small></div><span class="card-badge-status"><i class="fa-solid fa-circle-check"></i> متاح في الصالة</span></div>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function handleSearch() {
+      const val = document.getElementById('searchInput').value;
+      document.getElementById('clearSearchBtn').style.display = val ? 'block' : 'none';
+      renderMenu();
+    }
+
+    function clearSearch() {
+      document.getElementById('searchInput').value = '';
+      document.getElementById('clearSearchBtn').style.display = 'none';
+      renderMenu();
+    }
+
+    function formatTimeAgo(val) {
+      if (!val) return 'الآن';
+      const timeNum = Number(val);
+      if (isNaN(timeNum) || timeNum <= 0) return 'منذ قليل';
+      const diffInSec = Math.floor((Date.now() - timeNum) / 1000);
+      if (diffInSec < 60) return 'الآن';
+      const diffInMin = Math.floor(diffInSec / 60);
+      if (diffInMin < 60) return `منذ ${diffInMin} دقيقة`;
+      const diffInHours = Math.floor(diffInMin / 60);
+      if (diffInHours < 24) return `منذ ${diffInHours} ساعة`;
+      const diffInDays = Math.floor(diffInHours / 24);
+      return `منذ ${diffInDays} يوم`;
+    }
+
+    function renderReviews() {
+      const container = document.getElementById('reviewsFeed');
+      const publishedReviews = reviewsData.filter(review => review.approved);
+      if (publishedReviews.length === 0) { container.innerHTML = '<p style="color: var(--muted);">لا توجد آراء منشورة حتى الآن.</p>'; return; }
+      container.innerHTML = publishedReviews.map(rev => `
+        <div class="review-item">
+          <div class="review-header"><span class="reviewer-name">${escapeHtml(rev.name)}</span><div class="review-stars">${'<i class="fa-solid fa-star" style="color: #f5a623;"></i>'.repeat(rev.rating)}</div></div>
+          <p class="review-content">${escapeHtml(rev.comment)}</p>
+          <span class="review-date"><i class="fa-regular fa-clock"></i> ${formatTimeAgo(rev.timestamp)}</span>
+        </div>
+      `).join('');
+    }
+
+    function escapeHtml(value) {
+      return String(value).replace(/[&<>"']/g, character => ({
+        '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
+      })[character]);
+    }
+
+    function setupStarRatingListener() {
+      const stars = document.querySelectorAll('#starRating i');
+      stars.forEach(star => {
+        star.addEventListener('click', function() {
+          const val = parseInt(this.getAttribute('data-val'));
+          document.getElementById('revRating').value = val;
+          stars.forEach(s => s.classList.toggle('active', parseInt(s.getAttribute('data-val')) <= val));
+        });
+      });
+    }
+
+    async function submitReview(e) {
+      e.preventDefault();
+      const name = document.getElementById('revName').value.trim();
+      const rating = parseInt(document.getElementById('revRating').value);
+      const comment = document.getElementById('revComment').value.trim();
+      if (!name || !comment) return;
+      if (!supabaseClient) {
+        showToast('قاعدة البيانات غير مهيأة بعد');
+        return;
+      }
+      const { error } = await supabaseClient.from('reviews').insert({ name, rating, comment });
+      if (error) {
+        showToast('تعذر إرسال الرأي، حاول مرة أخرى');
+        console.error('Review submission failed:', error.message);
+        return;
+      }
+      document.getElementById('revName').value = '';
+      document.getElementById('revComment').value = '';
+      showToast('شكراً لك، رأيك سيظهر بعد المراجعة');
+    }
+
+    function openAdminModal() { document.getElementById('adminModal').classList.add('active'); }
+    function closeAdminModal() { document.getElementById('adminModal').classList.remove('active'); }
+
+    async function sendAdminMagicLink() {
+      if (!supabaseClient) {
+        showToast('أكمل إعداد اتصال Supabase أولاً');
+        return;
+      }
+      const email = document.getElementById('adminEmailInput').value.trim();
+      if (!email) {
+        showToast('اكتب البريد الإلكتروني أولاً');
+        return;
+      }
+      const { error } = await supabaseClient.auth.signInWithOtp({
+        email,
+        options: {
+          shouldCreateUser: false,
+          emailRedirectTo: new URL('.', window.location.href).href
+        }
+      });
+      if (error) {
+        console.error('Admin magic link failed:', error.message);
+        showToast('تعذر إرسال رابط الدخول');
+        return;
+      }
+      showToast('أرسلنا رابط دخول مؤقت إلى بريدك');
+    }
+
+    function switchAdminTab(tab) {
+      const tabNames = ['items', 'add', 'reviews'];
+      document.querySelectorAll('.admin-tab-btn').forEach((btn, index) => {
+        btn.classList.toggle('active', tabNames[index] === tab);
+      });
+      document.getElementById('tabItems').style.display = tab === 'items' ? 'block' : 'none';
+      document.getElementById('tabAdd').style.display = tab === 'add' ? 'block' : 'none';
+      document.getElementById('tabReviews').style.display = tab === 'reviews' ? 'block' : 'none';
+    }
+
+    async function signOutAdmin() {
+      await supabaseClient.auth.signOut();
+      adminSession = null;
+      document.getElementById('adminDashboardScreen').style.display = 'none';
+      document.getElementById('adminLoginScreen').style.display = 'block';
+      closeAdminModal();
+    }
+
+    function loadAdminTable() {
+      document.getElementById('adminTableBody').innerHTML = menuItems.map(item => `
+        <tr>
+          <td><strong>${escapeHtml(item.name)}</strong></td>
+          <td><span style="color: var(--muted);">${escapeHtml(item.cat)}</span></td>
+          <td><input type="number" class="table-price-input" value="${item.price}" onchange="updateItemPrice(${item.id}, this.value)"></td>
+          <td><button class="btn-action-small btn-toggle-stock ${item.inStock !== false ? '' : 'off'}" onclick="toggleStock(${item.id})">${item.inStock !== false ? 'متاح' : 'مخفي'}</button></td>
+          <td><button class="btn-action-small btn-del" onclick="deleteMenuItem(${item.id})">حذف</button></td>
+        </tr>
+      `).join('');
+    }
+
+    function updateItemPrice(id, val) {
+      const item = menuItems.find(i => i.id === id);
+      if (item) item.price = parseFloat(val) || item.price;
+    }
+
+    async function toggleStock(id) {
+      const item = menuItems.find(i => i.id === id);
+      if (item) {
+        item.inStock = !item.inStock;
+        const saved = await saveAndRefreshMenu();
+        if (saved) loadAdminTable();
+      }
+    }
+
+    async function deleteMenuItem(id) {
+      if (confirm('هل أنت متأكد من حذف الصنف؟')) {
+        const { error } = await supabaseClient.from('menu_items').delete().eq('id', id);
+        if (error) {
+          showToast('تعذر حذف الصنف');
+          return;
+        }
+        await fetchCloudData();
+        loadAdminTable();
+        showToast('تم الحذف بنجاح');
+      }
+    }
+
+    async function saveAllMenuChanges() {
+      const saved = await saveAndRefreshMenu();
+      showToast(saved ? 'تم حفظ كافة التعديلات' : 'تعذر حفظ التعديلات');
+    }
+
+    async function saveAndRefreshMenu() {
+      const { error } = await supabaseClient.from('menu_items').upsert(menuItems.map(toMenuRow));
+      if (error) {
+        console.error('Menu save failed:', error.message);
+        return false;
+      }
+      await fetchCloudData();
+      return true;
+    }
+
+    function populateCategoryDropdown() {
+      document.getElementById('newItemCat').innerHTML = getAllCategories().filter(c => c !== 'all').map(c => `<option value="${escapeHtml(c)}">${escapeHtml(c)}</option>`).join('');
+    }
+
+    async function handleAddNewItem(e) {
+      e.preventDefault();
+      const name = document.getElementById('newItemName').value.trim();
+      const cat = document.getElementById('newItemCat').value;
+      const price = parseFloat(document.getElementById('newItemPrice').value);
+      const img = document.getElementById('newItemImg').value.trim();
+      menuItems.unshift({ id: Date.now(), name, cat, price, img, inStock: true });
+      const saved = await saveAndRefreshMenu();
+      if (!saved) {
+        menuItems.shift();
+        showToast('تعذرت إضافة الصنف');
+        return;
+      }
+      loadAdminTable();
+      populateCategoryDropdown();
+      document.getElementById('newItemName').value = '';
+      document.getElementById('newItemPrice').value = '';
+      document.getElementById('newItemImg').value = '';
+      showToast('تمت الإضافة بنجاح!');
+      switchAdminTab('items');
+    }
+
+    function loadAdminReviews() {
+      document.getElementById('adminReviewsList').innerHTML = reviewsData.map(rev => `
+        <div style="background: rgba(255,255,255,0.03); border: 1px solid var(--border); padding: 12px; border-radius: 10px; margin-bottom: 10px; display: flex; justify-content: space-between; align-items: center;">
+          <div><strong>${escapeHtml(rev.name)}</strong> (${rev.rating} نجوم)<p style="color: var(--muted); font-size: 13px;">${escapeHtml(rev.comment)}</p><small>${rev.approved ? 'منشور' : 'بانتظار الموافقة'}</small></div>
+          ${rev.approved ? '' : `<button class="btn-action-small btn-toggle-stock" onclick="approveReviewAdmin(${rev.id})">موافقة</button>`}
+          <button class="btn-action-small btn-del" onclick="deleteReviewAdmin(${rev.id})">حذف</button>
+        </div>
+      `).join('');
+    }
+
+    async function approveReviewAdmin(id) {
+      const { error } = await supabaseClient.from('reviews').update({ approved: true }).eq('id', id);
+      if (error) {
+        showToast('تعذرت الموافقة على الرأي');
+        return;
+      }
+      await fetchCloudData();
+      showToast('تم نشر الرأي');
+    }
+
+    async function deleteReviewAdmin(id) {
+      const { error } = await supabaseClient.from('reviews').delete().eq('id', id);
+      if (error) {
+        showToast('تعذر حذف الرأي');
+        return;
+      }
+      await fetchCloudData();
+      showToast('تم مسح التعليق');
+    }
+
+    function showToast(msg) {
+      const box = document.getElementById('toastBox');
+      document.getElementById('toastMsg').innerText = msg;
+      box.classList.add('show');
+      setTimeout(() => box.classList.remove('show'), 2800);
+    }
+  </script>
+</body>
+</html>
