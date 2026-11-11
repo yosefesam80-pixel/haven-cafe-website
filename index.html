@@ -45,6 +45,7 @@
     .btn-icon { width: 40px; height: 40px; border-radius: 50%; border: 1px solid var(--border); background: rgba(255, 255, 255, 0.04); color: var(--cream); display: inline-flex; align-items: center; justify-content: center; cursor: pointer; transition: all 0.3s ease; }
     .btn-icon:hover { border-color: var(--gold); color: var(--gold); }
     .btn-primary { background: linear-gradient(135deg, var(--gold) 0%, #b88a35 100%); color: #0d120e; font-weight: 700; font-size: 13px; padding: 9px 18px; border-radius: 25px; border: none; cursor: pointer; display: inline-flex; align-items: center; gap: 8px; box-shadow: 0 4px 15px rgba(212, 169, 79, 0.25); }
+    .btn-primary:disabled { opacity: 0.55; cursor: not-allowed; }
     .hero-section { min-height: 85vh; display: flex; align-items: center; justify-content: center; text-align: center; padding: 130px 6% 70px; background: linear-gradient(180deg, rgba(8, 11, 9, 0.85) 0%, rgba(8, 11, 9, 0.95) 100%); }
     .hero-content { max-width: 820px; margin: 0 auto; z-index: 2; }
     .hero-badge { display: inline-flex; align-items: center; gap: 8px; background: rgba(212, 169, 79, 0.1); border: 1px solid var(--line); padding: 6px 16px; border-radius: 30px; color: var(--gold-light); font-size: 13px; font-weight: 600; margin-bottom: 24px; }
@@ -82,6 +83,20 @@
     .card-price { font-family: var(--font-display); font-size: 20px; font-weight: 800; color: var(--gold); }
     .card-price small { font-family: var(--font-ar); font-size: 12px; color: var(--muted); }
     .card-badge-status { font-size: 11px; color: #4cd964; display: inline-flex; align-items: center; gap: 5px; }
+    .btn-add-to-cart { width: 100%; justify-content: center; margin-top: 14px; padding: 9px 14px; }
+    .order-cart-button { position: fixed; left: 20px; bottom: 20px; z-index: 1500; border: 0; border-radius: 30px; padding: 13px 20px; background: #20b858; color: #fff; font-size: 14px; font-weight: 800; display: inline-flex; align-items: center; gap: 9px; cursor: pointer; box-shadow: 0 5px 20px rgba(0, 0, 0, 0.4); }
+    .order-cart-count { min-width: 22px; height: 22px; padding: 0 5px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; background: #fff; color: #14783a; font-size: 12px; }
+    .order-card { background: #0f1410; border: 1px solid var(--line); border-radius: 20px; width: 100%; max-width: 650px; max-height: 90vh; display: flex; flex-direction: column; overflow: hidden; }
+    .order-cart-list { display: grid; gap: 12px; max-height: 280px; overflow-y: auto; margin-bottom: 18px; }
+    .order-cart-empty { padding: 18px; text-align: center; border: 1px dashed var(--border); border-radius: 12px; color: var(--muted); }
+    .order-cart-item { padding: 14px; border: 1px solid var(--border); border-radius: 12px; background: rgba(255, 255, 255, 0.025); }
+    .order-cart-item-header, .order-cart-item-controls { display: flex; justify-content: space-between; align-items: center; gap: 12px; }
+    .order-cart-item-header { margin-bottom: 10px; }
+    .order-cart-item-price { color: var(--gold-light); font-size: 13px; white-space: nowrap; }
+    .order-cart-item-controls input[type="number"] { width: 84px; }
+    .order-cart-remove { border: 0; background: none; color: #f87171; cursor: pointer; font-size: 12px; }
+    .order-total { display: flex; justify-content: space-between; border-top: 1px solid var(--border); padding: 14px 0; margin-bottom: 12px; color: var(--gold-light); font-weight: 800; }
+    .order-help { color: var(--muted); font-size: 12px; margin: -4px 0 14px; }
     .gaming-section { padding: 80px 5%; max-width: 1200px; margin: 0 auto; }
     .gaming-card-main { background: linear-gradient(145deg, #111713 0%, #0a0e0b 100%); border: 1px solid rgba(212, 169, 79, 0.3); border-radius: 24px; padding: 50px; display: grid; grid-template-columns: 1.1fr 1fr; gap: 40px; align-items: center; }
     @media (max-width: 900px) { .gaming-card-main { grid-template-columns: 1fr; padding: 30px 24px; } }
@@ -143,9 +158,9 @@
     .social-btn { width: 44px; height: 44px; border-radius: 50%; background: rgba(255, 255, 255, 0.05); border: 1px solid var(--border); color: var(--cream); display: flex; align-items: center; justify-content: center; font-size: 18px; }
     .footer-copy { font-size: 13px; color: var(--muted); margin-top: 20px; }
     .footer-admin-link { display: inline-block; margin-top: 15px; font-size: 12px; color: var(--muted); cursor: pointer; }
-    .footer-signature { display: flex; align-items: center; justify-content: center; gap: 7px; margin-top: 18px; color: rgba(212, 169, 79, 0.62); }
-    .footer-signature-name { font-family: var(--font-calligraphy); font-size: 20px; line-height: 1; transform: rotate(-8deg); }
-    .footer-signature-dots { font-size: 10px; letter-spacing: 2px; opacity: 0.8; }     .footer-signature-surname { font-family: var(--font-calligraphy); font-size: 14px; letter-spacing: 1px; opacity: 0.85; }
+    .footer-signature { display: flex; align-items: center; justify-content: center; margin: 22px auto 4px; color: var(--gold-light); }
+    .footer-signature-name { position: relative; display: inline-block; direction: rtl; font-family: var(--font-calligraphy); font-size: 28px; font-weight: 700; line-height: 1.15; letter-spacing: 1px; text-shadow: 0 0 16px rgba(212, 169, 79, 0.25); transform: rotate(-7deg); }
+    .footer-signature-dots { position: absolute; top: calc(100% + 8px); right: 38%; transform: translateX(50%); color: var(--gold); font-family: var(--font-ar); font-size: 10px; letter-spacing: 0; line-height: 1; white-space: nowrap; text-shadow: 0 0 8px rgba(212, 169, 79, 0.3); }
     .modal-overlay { position: fixed; inset: 0; background: rgba(0, 0, 0, 0.85); backdrop-filter: blur(8px); z-index: 2000; display: none; align-items: center; justify-content: center; padding: 20px; }
     .modal-overlay.active { display: flex; }
     .admin-card { background: #0f1410; border: 1px solid var(--line); border-radius: 20px; width: 100%; max-width: 850px; max-height: 85vh; display: flex; flex-direction: column; overflow: hidden; }
@@ -164,6 +179,48 @@
     .btn-toggle-stock.off { background: rgba(156, 163, 175, 0.2); color: #9ca3af; }
     .toast-box { position: fixed; bottom: 25px; left: 50%; transform: translateX(-50%) translateY(100px); background: #141c16; border: 1px solid var(--gold); color: #fff; padding: 12px 24px; border-radius: 30px; font-size: 14px; font-weight: 600; z-index: 3000; transition: transform 0.3s ease; display: flex; align-items: center; gap: 10px; }
     .toast-box.show { transform: translateX(-50%) translateY(0); }
+    @media (max-width: 760px) {
+      .site-header { height: 70px; padding: 0 12px; }
+      .nav-links { position: absolute; top: 100%; left: 0; right: 0; display: flex; justify-content: flex-start; gap: 18px; height: 40px; padding: 7px 16px; overflow-x: auto; background: rgba(8, 11, 9, 0.96); border-bottom: 1px solid var(--line); scrollbar-width: none; }
+      .nav-links::-webkit-scrollbar { display: none; }
+      .nav-links a { flex: 0 0 auto; white-space: nowrap; font-size: 12px; }
+      .brand-logo { gap: 8px; }
+      .site-header .logo-badge { width: 40px; height: 40px; font-size: 17px; }
+      .brand-text h1 { font-size: 17px; }
+      .brand-text span { font-size: 9px; }
+      .header-actions { gap: 8px; }
+      .header-actions > .btn-primary { padding: 9px 11px; font-size: 12px; gap: 6px; }
+      .header-actions .btn-icon { width: 38px; height: 38px; }
+      .hero-section { min-height: 0; padding: 122px 5% 56px; }
+      .hero-title { font-size: clamp(29px, 8vw, 40px); }
+      .hero-desc { font-size: 15px; }
+      .menu-section { padding: 58px 16px 76px; }
+      .section-header { margin-bottom: 28px; }
+      .search-filter-box { margin-top: 22px; gap: 12px; }
+      .categories-bar { gap: 8px; padding-inline: 38px; }
+      .cat-btn { padding: 8px 14px; font-size: 13px; }
+      .menu-grid { grid-template-columns: minmax(0, 1fr); gap: 16px; margin-top: 24px; }
+      .card-img-wrap { height: 165px; }
+      .card-body { padding: 14px 16px 16px; }
+      .site-footer { padding-bottom: calc(90px + env(safe-area-inset-bottom)); }
+      .order-cart-button { left: 12px; bottom: calc(12px + env(safe-area-inset-bottom)); padding: 11px 16px; }
+      .modal-overlay { padding: 8px; padding-bottom: max(8px, env(safe-area-inset-bottom)); }
+      .order-card { width: 100%; max-height: calc(100vh - 16px); max-height: calc(100dvh - 16px - env(safe-area-inset-bottom)); border-radius: 16px; }
+      .order-card .admin-header { flex-shrink: 0; padding: 14px 16px; }
+      .order-card .admin-header h3 { font-size: 16px; }
+      .order-card .admin-body { min-height: 0; padding: 14px; overflow-y: auto; overscroll-behavior: contain; }
+      .order-cart-list { max-height: 20vh; max-height: 20dvh; gap: 8px; margin-bottom: 10px; }
+      .order-cart-item { padding: 11px; }
+      .order-cart-item-header, .order-cart-item-controls { gap: 8px; }
+      .order-cart-item-controls input[type="number"] { width: 72px; min-height: 42px; }
+      .order-total { padding: 10px 0; margin-bottom: 8px; }
+      .order-help { margin-bottom: 10px; font-size: 11px; }
+      .order-card .form-group { margin-bottom: 10px; }
+      .order-card .form-control { min-height: 44px; padding: 10px 12px; font-size: 16px; }
+      .order-card textarea.form-control { min-height: 64px; }
+      .order-card #sendOrderButton { position: sticky; bottom: -14px; z-index: 1; min-height: 48px; box-shadow: 0 -8px 18px rgba(15, 20, 16, 0.9); }
+      .toast-box { bottom: calc(72px + env(safe-area-inset-bottom)); width: max-content; max-width: calc(100% - 32px); justify-content: center; padding: 10px 18px; font-size: 13px; }
+    }
   </style>
 </head>
 <body>
@@ -201,7 +258,7 @@
     <div class="section-header">
       <div class="section-tag">GOOD DRINKS • GOOD MOOD</div>
       <h2 class="section-title">قائمة المشروبات والحلويات</h2>
-      <p style="color: var(--muted); font-size: 15px;">المنيو الأصلي المعتمد بالأسعار الرسمية الكاملة</p>
+      <p style="color: var(--muted); font-size: 15px;">اختار مشروباتك وحلوياتك، اكتب عنوانك وإضافاتك، وابعت طلبك على واتساب</p>
       <div class="search-filter-box">
         <div class="search-input-wrapper">
           <i class="fa-solid fa-magnifying-glass search-icon"></i>
@@ -318,8 +375,32 @@
     </div>
     <p class="footer-copy">© 2026 HAVEN Café & PlayStation. تفتيش كفر سعد، دمياط. جميع الحقوق محفوظة.</p>
     <a class="footer-admin-link" onclick="openAdminModal()">لوحة تحكم الإدارة والاستاف 🔒</a>
-    <div class="footer-signature" aria-label="توقيع چو الزيني"><span class="footer-signature-name">چو</span><span class="footer-signature-dots" aria-hidden="true">•••</span><span class="footer-signature-surname">الزيني</span></div>
+    <div class="footer-signature" aria-label="چوو"><span class="footer-signature-name">چو<span class="footer-signature-waw">و</span><span class="footer-signature-dots" aria-hidden="true">•••</span></span></div>
   </footer>
+
+  <button class="order-cart-button" type="button" onclick="openOrderCart()" aria-label="افتح طلب واتساب">
+    <i class="fa-brands fa-whatsapp"></i><span>اطلب واتساب</span><span class="order-cart-count" id="orderCartCount">0</span>
+  </button>
+
+  <div class="modal-overlay" id="orderModal" onclick="if (event.target === this) closeOrderCart()">
+    <div class="order-card">
+      <div class="admin-header">
+        <h3><i class="fa-brands fa-whatsapp" style="color: #25d366;"></i> تجهيز طلب واتساب</h3>
+        <button class="btn-icon" type="button" style="width: 32px; height: 32px;" onclick="closeOrderCart()" aria-label="إغلاق"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <div class="admin-body">
+        <div id="orderCartItems" class="order-cart-list"></div>
+        <div class="order-total"><span>إجمالي الأصناف</span><span id="orderTotal">0 ج.م</span></div>
+        <p class="order-help">الإجمالي لا يشمل التوصيل؛ أكّد تكلفة التوصيل معانا على واتساب.</p>
+        <form onsubmit="sendWhatsAppOrder(event)">
+          <div class="form-group"><label for="orderCustomerName">اسمك (اختياري)</label><input id="orderCustomerName" class="form-control" autocomplete="name" placeholder="اكتب اسمك"></div>
+          <div class="form-group"><label for="orderAddress">عنوان التوصيل بالتفصيل</label><textarea id="orderAddress" class="form-control" rows="2" autocomplete="street-address" placeholder="المنطقة والشارع ورقم البيت أو علامة مميزة" required></textarea></div>
+          <div class="form-group"><label for="orderNotes">ملاحظات إضافية للطلب (اختياري)</label><textarea id="orderNotes" class="form-control" rows="2" placeholder="أي تعليمات للتوصيل أو للطلب"></textarea></div>
+          <button id="sendOrderButton" type="submit" class="btn-primary" style="width: 100%; justify-content: center; padding: 12px; background: #20b858; color: #fff;" disabled><i class="fa-brands fa-whatsapp"></i><span>إرسال الطلب على واتساب</span></button>
+        </form>
+      </div>
+    </div>
+  </div>
 
   <div class="modal-overlay" id="adminModal">
     <div class="admin-card">
@@ -345,8 +426,7 @@
         </div>
         <div id="tabItems">
           <div style="margin-bottom: 12px; display: flex; justify-content: space-between; align-items: center;">
-            <span style="font-size: 13px; color: var(--muted);">عدّل السعر أو حالة التوفر مباشرة واضغط حفظ:</span>
-            <button class="btn-primary" style="font-size: 12px; padding: 6px 14px;" onclick="saveAllMenuChanges()"><i class="fa-solid fa-floppy-disk"></i> حفظ كافة التعديلات</button>
+            <span style="font-size: 13px; color: var(--muted);">عدّل السعر أو حالة التوفر، وسيتم الحفظ تلقائياً:</span>
           </div>
           <div style="overflow-x: auto;"><table class="admin-table"><thead><tr><th>الصنف</th><th>القسم</th><th>السعر (ج.م)</th><th>الحالة</th><th>إجراء</th></tr></thead><tbody id="adminTableBody"></tbody></table></div>
         </div>
@@ -502,6 +582,7 @@
     ];
 
     let menuItems = initialMenuItems;
+    let orderCart = [];
     let reviewsData = [];
     let adminSession = null;
     let currentCategory = 'all';
@@ -645,9 +726,134 @@
           <div class="card-body">
             <h4 class="card-title">${escapeHtml(item.name)}</h4>
             <div class="card-footer"><div class="card-price">${item.price} <small>ج.م</small></div><span class="card-badge-status"><i class="fa-solid fa-circle-check"></i> متاح في الصالة</span></div>
+            <button type="button" class="btn-primary btn-add-to-cart" onclick="addToOrderCart(${item.id})"><i class="fa-solid fa-plus"></i><span>أضف لطلب واتساب</span></button>
           </div>
         </div>
       `).join('');
+    }
+
+    function addToOrderCart(id) {
+      const item = menuItems.find(menuItem => menuItem.id === id);
+      if (!item || item.inStock === false) {
+        showToast('الصنف غير متاح حالياً');
+        return;
+      }
+
+      const existing = orderCart.find(cartItem => cartItem.id === id);
+      if (existing) existing.quantity += 1;
+      else orderCart.push({ id, quantity: 1, notes: '' });
+
+      renderOrderCart();
+      showToast(`تمت إضافة ${item.name} للطلب`);
+    }
+
+    function openOrderCart() {
+      renderOrderCart();
+      document.getElementById('orderModal').classList.add('active');
+    }
+
+    function closeOrderCart() {
+      document.getElementById('orderModal').classList.remove('active');
+    }
+
+    function renderOrderCart() {
+      const itemsContainer = document.getElementById('orderCartItems');
+      if (!itemsContainer) return;
+
+      const cartItems = orderCart
+        .map(cartItem => ({ ...cartItem, item: menuItems.find(item => item.id === cartItem.id) }))
+        .filter(cartItem => cartItem.item);
+
+      itemsContainer.innerHTML = cartItems.length
+        ? cartItems.map(({ id, quantity, notes, item }) => `
+          <div class="order-cart-item">
+            <div class="order-cart-item-header">
+              <strong>${escapeHtml(item.name)}</strong>
+              <span class="order-cart-item-price">${item.price * quantity} ج.م</span>
+            </div>
+            <div class="order-cart-item-controls">
+              <label for="orderQuantity${id}" style="font-size: 12px; color: var(--muted);">الكمية</label>
+              <input id="orderQuantity${id}" type="number" min="1" step="1" class="form-control" value="${quantity}" onchange="updateOrderQuantity(${id}, this.value)">
+              <button type="button" class="order-cart-remove" onclick="removeFromOrderCart(${id})"><i class="fa-solid fa-trash"></i> حذف</button>
+            </div>
+            <div class="form-group" style="margin: 12px 0 0;">
+              <label for="orderItemNotes${id}">إضافات أو تفاصيل الصنف</label>
+              <input id="orderItemNotes${id}" class="form-control" value="${escapeHtml(notes)}" oninput="updateOrderItemNotes(${id}, this.value)" placeholder="مثال: سكر زيادة، صوص لوتس، بدون ثلج">
+            </div>
+          </div>
+        `).join('')
+        : '<div class="order-cart-empty">لسه ما أضفتش أصناف. اقفل النافذة واختار من المنيو.</div>';
+
+      const total = cartItems.reduce((sum, cartItem) => sum + cartItem.item.price * cartItem.quantity, 0);
+      const count = cartItems.reduce((sum, cartItem) => sum + cartItem.quantity, 0);
+      document.getElementById('orderTotal').textContent = `${total} ج.م`;
+      document.getElementById('orderCartCount').textContent = count;
+      document.getElementById('sendOrderButton').disabled = count === 0;
+    }
+
+    function updateOrderQuantity(id, value) {
+      const quantity = Number(value);
+      const cartItem = orderCart.find(item => item.id === id);
+      if (!cartItem) return;
+      if (!Number.isInteger(quantity) || quantity < 1) {
+        renderOrderCart();
+        showToast('الكمية لازم تكون واحد أو أكتر');
+        return;
+      }
+      cartItem.quantity = quantity;
+      renderOrderCart();
+    }
+
+    function updateOrderItemNotes(id, value) {
+      const cartItem = orderCart.find(item => item.id === id);
+      if (cartItem) cartItem.notes = value;
+    }
+
+    function removeFromOrderCart(id) {
+      orderCart = orderCart.filter(item => item.id !== id);
+      renderOrderCart();
+    }
+
+    function sendWhatsAppOrder(event) {
+      event.preventDefault();
+      const address = document.getElementById('orderAddress').value.trim();
+      const availableItems = orderCart
+        .map(cartItem => ({ ...cartItem, item: menuItems.find(item => item.id === cartItem.id) }))
+        .filter(cartItem => cartItem.item);
+
+      if (!availableItems.length) {
+        showToast('أضف صنفاً واحداً على الأقل من المنيو');
+        return;
+      }
+      if (availableItems.some(cartItem => cartItem.item.inStock === false)) {
+        showToast('فيه صنف من طلبك بقى غير متاح، راجع المنيو');
+        return;
+      }
+      if (!address) {
+        document.getElementById('orderAddress').reportValidity();
+        return;
+      }
+
+      const name = document.getElementById('orderCustomerName').value.trim();
+      const orderNotes = document.getElementById('orderNotes').value.trim();
+      const total = availableItems.reduce((sum, cartItem) => sum + cartItem.item.price * cartItem.quantity, 0);
+      const lines = [
+        'مرحباً HAVEN، عايز أعمل طلب أونلاين:',
+        '',
+        ...availableItems.flatMap(({ quantity, notes, item }) => [
+          `• ${item.name} × ${quantity} — ${item.price * quantity} ج.م`,
+          ...(notes.trim() ? [`  الإضافات/التفاصيل: ${notes.trim()}`] : [])
+        ]),
+        '',
+        `العنوان: ${address}`,
+        ...(name ? [`الاسم: ${name}`] : []),
+        ...(orderNotes ? [`ملاحظات الطلب: ${orderNotes}`] : []),
+        `إجمالي الأصناف: ${total} ج.م (غير شامل التوصيل)`,
+        'من فضلكم أكدوا تكلفة التوصيل والطلب.'
+      ];
+      const whatsappUrl = `https://wa.me/201024354656?text=${encodeURIComponent(lines.join('\n'))}`;
+      const whatsappWindow = window.open(whatsappUrl, '_blank');
+      if (!whatsappWindow) showToast('اسمح بفتح واتساب لإرسال طلبك');
     }
 
     function handleSearch() {
@@ -778,16 +984,46 @@
         <tr>
           <td><strong>${escapeHtml(item.name)}</strong></td>
           <td><span style="color: var(--muted);">${escapeHtml(item.cat)}</span></td>
-          <td><input type="number" class="table-price-input" value="${item.price}" onchange="updateItemPrice(${item.id}, this.value)"></td>
+          <td><input type="number" min="0" step="0.01" class="table-price-input" value="${item.price}" onchange="updateItemPrice(${item.id}, this)"></td>
           <td><button class="btn-action-small btn-toggle-stock ${item.inStock !== false ? '' : 'off'}" onclick="toggleStock(${item.id})">${item.inStock !== false ? 'متاح' : 'مخفي'}</button></td>
           <td><button class="btn-action-small btn-del" onclick="deleteMenuItem(${item.id})">حذف</button></td>
         </tr>
       `).join('');
     }
 
-    function updateItemPrice(id, val) {
+    async function updateItemPrice(id, input) {
       const item = menuItems.find(i => i.id === id);
-      if (item) item.price = parseFloat(val) || item.price;
+      if (!item) return;
+
+      const value = input.value.trim();
+      const price = Number(value);
+      if (value === '' || !Number.isFinite(price) || price < 0) {
+        input.value = item.price;
+        showToast('اكتب سعراً صحيحاً');
+        return;
+      }
+
+      if (!supabaseClient) {
+        input.value = item.price;
+        showToast('قاعدة البيانات غير مهيأة بعد');
+        return;
+      }
+
+      input.disabled = true;
+      try {
+        const { error } = await supabaseClient.from('menu_items').update({ price }).eq('id', id).select('id').single();
+        if (error) throw error;
+
+        item.price = price;
+        renderMenu();
+        showToast('تم تحديث السعر');
+      } catch (error) {
+        console.error('Menu price update failed:', error.message);
+        input.value = item.price;
+        showToast('تعذر تحديث السعر، حاول مرة أخرى');
+      } finally {
+        input.disabled = false;
+      }
     }
 
     async function toggleStock(id) {
@@ -810,11 +1046,6 @@
         loadAdminTable();
         showToast('تم الحذف بنجاح');
       }
-    }
-
-    async function saveAllMenuChanges() {
-      const saved = await saveAndRefreshMenu();
-      showToast(saved ? 'تم حفظ كافة التعديلات' : 'تعذر حفظ التعديلات');
     }
 
     async function saveAndRefreshMenu() {
