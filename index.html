@@ -173,6 +173,8 @@
     .admin-table th, .admin-table td { padding: 10px 12px; border-bottom: 1px solid rgba(255, 255, 255, 0.06); text-align: right; }
     .admin-table th { color: var(--gold); }
     .table-price-input { width: 70px; background: rgba(255, 255, 255, 0.06); border: 1px solid var(--border); border-radius: 6px; color: #fff; padding: 4px 8px; text-align: center; }
+    .admin-image-input { width: 180px; color: var(--muted); font-size: 11px; }
+    .admin-image-input::file-selector-button { background: rgba(212, 169, 79, 0.15); border: 1px solid var(--line); border-radius: 6px; color: var(--gold); padding: 5px 8px; cursor: pointer; }
     .btn-action-small { padding: 4px 8px; border-radius: 6px; font-size: 11px; cursor: pointer; border: none; }
     .btn-del { background: rgba(239, 68, 68, 0.2); color: #f87171; }
     .btn-toggle-stock { background: rgba(52, 211, 153, 0.2); color: #34d399; }
@@ -426,16 +428,16 @@
         </div>
         <div id="tabItems">
           <div style="margin-bottom: 12px; display: flex; justify-content: space-between; align-items: center;">
-            <span style="font-size: 13px; color: var(--muted);">عدّل السعر أو حالة التوفر، وسيتم الحفظ تلقائياً:</span>
+            <span style="font-size: 13px; color: var(--muted);">عدّل السعر أو حالة التوفر، وسيتم الحفظ تلقائياً. اختيار صورة جديدة يحدّثها مباشرة:</span>
           </div>
-          <div style="overflow-x: auto;"><table class="admin-table"><thead><tr><th>الصنف</th><th>القسم</th><th>السعر (ج.م)</th><th>الحالة</th><th>إجراء</th></tr></thead><tbody id="adminTableBody"></tbody></table></div>
+          <div style="overflow-x: auto;"><table class="admin-table"><thead><tr><th>الصنف</th><th>القسم</th><th>السعر (ج.م)</th><th>الصورة</th><th>الحالة</th><th>إجراء</th></tr></thead><tbody id="adminTableBody"></tbody></table></div>
         </div>
         <div id="tabAdd" style="display: none;">
           <form onsubmit="handleAddNewItem(event)" style="max-width: 500px;">
             <div class="form-group"><label>اسم الصنف الجديد</label><input type="text" id="newItemName" class="form-control" placeholder="مثال: فلات وايت كراميل" required></div>
             <div class="form-group"><label>القسم</label><select id="newItemCat" class="form-control" required></select></div>
-            <div class="form-group"><label>السعر (بالجنيه)</label><input type="number" id="newItemPrice" class="form-control" placeholder="80" required></div>
-            <div class="form-group"><label>رابط الصورة (URL)</label><input type="url" id="newItemImg" class="form-control" placeholder="https://..." required></div>
+            <div class="form-group"><label>السعر (بالجنيه)</label><input type="number" min="0" step="0.01" id="newItemPrice" class="form-control" placeholder="80" required></div>
+            <div class="form-group"><label for="newItemImage">صورة الصنف من جهازك</label><input type="file" id="newItemImage" class="form-control" accept="image/jpeg,image/png,image/webp,image/gif,image/avif" required></div>
             <button type="submit" class="btn-primary" style="padding: 10px 20px;"><i class="fa-solid fa-plus"></i> إضافة الصنف للمنيو فوراً</button>
           </form>
         </div>
@@ -985,10 +987,63 @@
           <td><strong>${escapeHtml(item.name)}</strong></td>
           <td><span style="color: var(--muted);">${escapeHtml(item.cat)}</span></td>
           <td><input type="number" min="0" step="0.01" class="table-price-input" value="${item.price}" onchange="updateItemPrice(${item.id}, this)"></td>
+          <td><input type="file" class="admin-image-input" accept="image/jpeg,image/png,image/webp,image/gif,image/avif" aria-label="تغيير صورة ${escapeHtml(item.name)}" onchange="updateItemImage(${item.id}, this)"></td>
           <td><button class="btn-action-small btn-toggle-stock ${item.inStock !== false ? '' : 'off'}" onclick="toggleStock(${item.id})">${item.inStock !== false ? 'متاح' : 'مخفي'}</button></td>
           <td><button class="btn-action-small btn-del" onclick="deleteMenuItem(${item.id})">حذف</button></td>
         </tr>
       `).join('');
+    }
+
+    async function uploadMenuImage(file, itemId) {
+      if (!file || !['image/jpeg', 'image/png', 'image/webp', 'image/gif', 'image/avif'].includes(file.type)) {
+        throw new Error('اختار صورة بصيغة JPG أو PNG أو WebP أو GIF أو AVIF');
+      }
+      if (file.size > 5 * 1024 * 1024) {
+        throw new Error('حجم الصورة يجب ألا يزيد عن 5 ميجابايت');
+      }
+      const extension = { 'image/jpeg': 'jpg', 'image/png': 'png', 'image/webp': 'webp', 'image/gif': 'gif', 'image/avif': 'avif' }[file.type];
+      const imagePath = `menu-items/${itemId}/${Date.now()}-${Math.random().toString(36).slice(2)}.${extension}`;
+      const { error: uploadError } = await supabaseClient.storage
+        .from('haven-menu-images')
+        .upload(imagePath, file, { cacheControl: '3600', contentType: file.type, upsert: false });
+      if (uploadError) throw uploadError;
+      return {
+        imagePath,
+        url: supabaseClient.storage.from('haven-menu-images').getPublicUrl(imagePath).data.publicUrl
+      };
+    }
+
+    async function updateItemImage(id, input) {
+      const item = menuItems.find(menuItem => menuItem.id === id);
+      const file = input.files[0];
+      if (!item || !file) return;
+      if (!supabaseClient || !adminSession) {
+        input.value = '';
+        showToast('سجّل دخول الإدارة واتأكد من إعداد قاعدة البيانات');
+        return;
+      }
+
+      input.disabled = true;
+      try {
+        const uploadedImage = await uploadMenuImage(file, id);
+        const { error } = await supabaseClient.from('menu_items').update({ img: uploadedImage.url }).eq('id', id).select('id').single();
+        if (error) {
+          const { error: cleanupError } = await supabaseClient.storage.from('haven-menu-images').remove([uploadedImage.imagePath]);
+          if (cleanupError) console.error('Uploaded image cleanup failed:', cleanupError.message);
+          throw error;
+        }
+        item.img = uploadedImage.url;
+        renderMenu();
+        showToast('تم تحديث صورة الصنف');
+      } catch (error) {
+        console.error('Menu image update failed:', error.message);
+        showToast(error.message && (error.message.startsWith('اختار') || error.message.startsWith('حجم'))
+          ? error.message
+          : 'تعذر تحديث الصورة، راجع إعداد التخزين وحاول مرة أخرى');
+      } finally {
+        input.disabled = false;
+        input.value = '';
+      }
     }
 
     async function updateItemPrice(id, input) {
@@ -1067,19 +1122,57 @@
       const name = document.getElementById('newItemName').value.trim();
       const cat = document.getElementById('newItemCat').value;
       const price = parseFloat(document.getElementById('newItemPrice').value);
-      const img = document.getElementById('newItemImg').value.trim();
-      menuItems.unshift({ id: Date.now(), name, cat, price, img, inStock: true });
-      const saved = await saveAndRefreshMenu();
-      if (!saved) {
-        menuItems.shift();
-        showToast('تعذرت إضافة الصنف');
+      const imageInput = document.getElementById('newItemImage');
+      const file = imageInput.files[0];
+      if (!name || !cat || !Number.isFinite(price) || price < 0 || !file) {
+        showToast('أكمل بيانات الصنف واختر صورة صحيحة');
         return;
       }
+      if (!supabaseClient || !adminSession) {
+        showToast('سجّل دخول الإدارة واتأكد من إعداد قاعدة البيانات');
+        return;
+      }
+
+      const submitButton = e.currentTarget.querySelector('button[type="submit"]');
+      submitButton.disabled = true;
+      let itemId;
+      try {
+        const { data: insertedItem, error: insertError } = await supabaseClient.from('menu_items')
+          .insert({ name, cat, price, img: '', in_stock: false })
+          .select('id')
+          .single();
+        if (insertError) throw insertError;
+        itemId = insertedItem.id;
+
+        const uploadedImage = await uploadMenuImage(file, itemId);
+        const { error: imageError } = await supabaseClient.from('menu_items')
+          .update({ img: uploadedImage.url, in_stock: true })
+          .eq('id', itemId);
+        if (imageError) {
+          const { error: cleanupError } = await supabaseClient.storage.from('haven-menu-images').remove([uploadedImage.imagePath]);
+          if (cleanupError) console.error('Uploaded image cleanup failed:', cleanupError.message);
+          throw imageError;
+        }
+        await fetchCloudData();
+      } catch (error) {
+        console.error('Menu item creation failed:', error.message);
+        if (itemId) {
+          const { error: rollbackError } = await supabaseClient.from('menu_items').delete().eq('id', itemId);
+          if (rollbackError) console.error('Menu item rollback failed:', rollbackError.message);
+        }
+        showToast(error.message && (error.message.startsWith('اختار') || error.message.startsWith('حجم'))
+          ? error.message
+          : 'تعذرت إضافة الصنف، راجع إعداد التخزين وحاول مرة أخرى');
+        return;
+      } finally {
+        submitButton.disabled = false;
+      }
+
       loadAdminTable();
       populateCategoryDropdown();
       document.getElementById('newItemName').value = '';
       document.getElementById('newItemPrice').value = '';
-      document.getElementById('newItemImg').value = '';
+      imageInput.value = '';
       showToast('تمت الإضافة بنجاح!');
       switchAdminTab('items');
     }
